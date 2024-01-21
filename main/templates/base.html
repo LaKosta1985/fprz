@@ -1,0 +1,335 @@
+
+
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+   
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>{% block title %}Default title{% endblock title %}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{% static "css/bootstrap.css"  %}" />
+		
+		<link rel="stylesheet" href="{% static "css/main.css" %}" />
+		<link rel="stylesheet" href="{% static "css/Mymain.css" %}" />
+	    <link rel="stylesheet" href="{% static "css/button.css" %}" />
+		<noscript><link rel="stylesheet" href="{% static "/css/noscript.css" %}" /></noscript>
+		<link rel="icon" type="image/x-icon" href="{% static "favicon.ico" %}">
+	    <meta name="description" content="Федерация пауэрлифтинга Рязани и Рязанской области, ФПР"/>
+	    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+		
+</head>
+	<body class="homepage is-preload">
+		<div id="page-wrapper">
+			
+			
+			
+				<div id="header">
+
+					<!-- Inner -->
+						<div class="inner">
+							<header>
+								<h1><a href="index.html" id="logo" >-|||-РФП-|||-</a></h1>
+								<hr />
+								<p id="feder">-ФЕДЕРАЦИЯ ПАУЭРЛИФТИНГА г.РЯЗАНИ и РЯЗАНСКОЙ ОБЛАСТИ-</p>
+							</header>
+							<footer>
+					<a href="#view" class="button circled scrolly">ЖМИ!</a>
+							</footer>
+						</div>
+					<!-- Nav -->
+						<nav id="nav">
+							<ul>
+								<li><a href="/">ИНФО</a></li>
+								<li>
+									<a href="#">Спортсмены</a>
+									<ul>
+										<li><a href="/sportsmens/federMember">Члены Федерации</a></li>
+										<li><a href="/sportsmens/record">Рекорды Рязанской области ФПР</a></li>
+										
+										<li><a href="/sportsmens/autorize">Вход в аккаунт(для членов Федерации)</a></li>
+										<li><a href="/sportsmens/create_sport">Регистрация(для членов Федерации)</a></li>
+									</ul>
+								</li>
+								<li>
+									<a href="#">Соревнования</a>
+									<ul>
+										<li><a href="/sorev/calendar">Календарь соревнований</a></li>
+										<li><a href="/sorev/protocol">Протоколы</a></li>
+										<li><a href="/sorev/foto">Фото</a></li>
+										<li><a href="/zayavka">Отправить заявку на соревнования</a></li>
+									</ul>
+								</li>
+								
+								<li><a href="#">Документы</a>
+									<ul>
+										<li><a href="/documents/document">Документы</a></li>
+										<li><a href="/documents/pologeniya">Положения</a></li>
+										<li><a href="/documents/normativ">Нормативы</a></li>
+									</ul>
+								</li>
+					<li><a href="/antiDop">Антидопинг</a></li>
+								<li><a href="/contacts">Контакты</a></li>
+							</ul>
+						</nav>
+
+				</div>
+
+
+
+	
+		
+			
+            <div id="view">
+                {% block content%}{% endblock content %}
+			</div>
+			<!-- Footer -->
+				<div id="footer">
+					<div class="container">
+						<div class="row">
+
+							
+								<section class="col-4 col-12-mobile">
+									<header>
+										<h2 class="icon solid fa-file circled"><span class="label">Карта сайта</span></h2>
+									</header>
+									<ul class="divided">
+													<li>
+											<article class="post stub">
+												<header>
+													<h3><a href="/Info/#view">Информация</a></h3>
+												</header>
+												
+											</article>
+										</li>
+							<li>
+								<article class="post stub">
+									<header>
+										<h3><a href="/Record/#view">Рекорды Рязанской области</a></h3>
+									</header>
+
+								</article>
+							</li>
+							<li>
+								<article class="post stub">
+									<header>
+										<h3><a href="/Norm/#view">Нормативы Федерации</a></h3>
+									</header>
+
+								</article>
+							</li>
+											<li>
+											<article class="post stub">
+												<header>
+													<h3><a href="/Sportsmen/#view">Члены Федерации</a></h3>
+												</header>
+												
+											</article>
+										</li>
+											<li>
+											<article class="post stub">
+												<header>
+													<h3><a href="/Protocol/#view">Протоколы</a></h3>
+												</header>
+												
+											</article>
+										</li>
+										<li>
+											<article class="post stub">
+												<header>
+													<h3><a href="/foto/#view">Фотографии</a></h3>
+												</header>
+												
+											</article>
+										</li>
+						
+									</ul>
+								</section>
+
+							<!-- Posts -->
+								<section class="col-4 col-12-mobile">
+									<header>
+										<h2 class="icon solid fa-file circled"><span class="label">Карта сайта</span></h2>
+									</header>
+									<ul class="divided">
+									
+									
+										<li>
+											<article class="post stub">
+												<header>
+													<h3><a href="/Pologeniya/#view">Положения</a></h3>
+												</header>
+												
+											</article>
+										</li>
+									
+										<li>
+											<article class="post stub">
+												<header>
+													<h3><a href="/Doc/#view">Документы Федерации</a></h3>
+												</header>
+												
+											</article>
+										</li>
+											<li>
+											<article class="post stub">
+												<header>
+													<h3><a href="/Calendar/#view">Календарь соревнований</a></h3>
+												</header>
+												
+											</article>
+										</li>
+							<li>
+								<article class="post stub">
+									<header>
+										<h3><a href="/contact/#view">Контакты</a></h3>
+									</header>
+
+								</article>
+							</li>
+											<li>
+											<article class="post stub">
+												<header>
+										<h3><a href="/Zayavka/#view">Отправить заявку</a></h3>
+												</header>
+												
+											</article>
+										</li>
+							<li>
+								<article class="post stub">
+									<header>
+										<h3><a href="/Anti/#view">Антидопинг</a></h3>
+									</header>
+
+								</article>
+							</li>
+										
+									</ul>
+								</section>
+
+	
+
+
+
+
+								<section class="col-4 col-12-mobile">
+									<header>
+										<h2 class="icon solid fa-camera circled"><span class="label">Photos</span></h2>
+									</header>
+									<div class="row gtr-25">
+										<div class="col-6">
+											<a href="~/images/randomImg/@System.IO.Path.GetFileName(files[r1])" class="image fit swipebox"><img class="randomImg" src="~/images/randomImg/@System.IO.Path.GetFileName(files[r1])" alt="" loading="lazy"/></a>
+										</div>
+										<div class="col-6">
+								<a href="~/images/randomImg/@System.IO.Path.GetFileName(files[r2])" class="image fit swipebox"><img class="randomImg" src="~/images/randomImg/@System.IO.Path.GetFileName(files[r2])" alt="" loading="lazy" /></a>
+										</div>
+										<div class="col-6">
+								<a href="~/images/randomImg/@System.IO.Path.GetFileName(files[r3])" class="image fit swipebox"><img class="randomImg" src="~/images/randomImg/@System.IO.Path.GetFileName(files[r3])" alt="" loading="lazy" /></a>
+										</div>
+										<div class="col-6">
+								<a href="~/images/randomImg/@System.IO.Path.GetFileName(files[r4])" class="image fit swipebox"><img class="randomImg" src="~/images/randomImg/@System.IO.Path.GetFileName(files[r4])" alt="" loading="lazy" /></a>
+										</div>
+										<div class="col-6">
+								<a href="~/images/randomImg/@System.IO.Path.GetFileName(files[r5])" class="image fit swipebox"><img class="randomImg" src="~/images/randomImg/@System.IO.Path.GetFileName(files[r5])" alt="" loading="lazy" /></a>
+										</div>
+										<div class="col-6">
+								<a href="~/images/randomImg/@System.IO.Path.GetFileName(files[r6])" class="image fit swipebox"><img class="randomImg" src="~/images/randomImg/@System.IO.Path.GetFileName(files[r6])" alt="" loading="lazy" /></a>
+										</div>
+									</div>
+								</section>
+
+						</div>
+						<hr />
+						<div class="row">
+							<div class="col-12">
+
+								<!-- Contact -->
+									<section class="contact">
+										<header>
+											<h3>Наша Федерация представлена в социальных сетях.</h3>
+										</header>
+										
+										<ul class="icons">
+											<li><a href="https://vk.com/fpr62" class="icon brands fa-vk"><span class="label">Мы есть вконтакте</span></a></li>
+										
+										</ul>
+									</section>
+
+								<!-- Copyright -->
+									<div class="copyright">
+										<ul class="menu">
+											<li>&copy; Все права защищены.</li><li>Рязань: <a href="/Info/#view">РФП</a></li>
+										</ul>
+						
+									</div>
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+		</div>
+
+  <script src="{% static "/js/jquery.min.js" %}"></script>
+			<script src="{% static "/js/jquery.dropotron.min.js" %}"></script>
+			<script src="{% static "/js/jquery.scrolly.min.js" %}"></script>
+			<script src="{% static "/js/jquery.scrollex.min.js" %}"></script>
+			<script src="{% static "/js/browser.min.js" %}"></script>
+			<script src="{% static "/js/breakpoints.min.js" %}"></script>
+			<script src="{% static "/js/util.js" %}"></script>
+			<script src="{% static "/js/main.js" %}"></script>
+			<script src="{% static "/js/intense.js" %}"></script>
+		    
+
+
+<script type="text/javascript">
+ var rect = document.querySelectorAll(".randomImg");
+ 
+rect.forEach(item=>item.addEventListener("click", function () { 
+	 var SrcItem =event.target.getAttribute('src');
+  
+
+}));
+//swipebox(rect);
+
+</script>
+
+
+
+
+
+
+</body>
+</html>
+
+
+
+<script type="text/javascript">
+     (function ($) {
+
+        $('.swipebox').swipebox();
+
+    })(jQuery);
+</script>
+
+
+<script>
+	$(document).ready(function () {
+	
+
+		$('.content_toggle').click(function (event) {
+			event.preventDefault();   // блокировать переход по ссылке
+
+			const $link = $(event.target); // a - конкретная ссылка которая была нажата
+			const $content = $link.prev('div.content_block');  // div -контент блок перед ссылкой
+
+			$content.toggleClass('hide'); // показать или скрыть контент блок
+
+			const htmlLink = $content.hasClass('hide') ? 'Подробнее' : 'Скрыть';
+			$link.html(htmlLink);
+		});
+	});
+</script>
+
+

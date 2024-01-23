@@ -17,10 +17,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from main import views
-
+document_patterns=[
+    path('document', views.document,name="doc"),
+    path('pologeniya', views.pologeniya,name="polog"),
+    path('normativ', views.normativ,name="norm"),
+]
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", views.index,name='index'),
+    path("documents/", include(document_patterns)),
 ]
 
 

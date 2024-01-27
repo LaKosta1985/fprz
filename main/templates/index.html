@@ -1,6 +1,8 @@
+
 {% extends "base.html" %}
 {% block title %}{{title}}{% endblock title %}
 {% block content %}
+
 <section id="banner">
 <header class="majorline">
     <h2>Федерация Пауэрлифтинга Рязани и Рязанской области (РФП)</h2>
@@ -12,8 +14,41 @@
  
 </header>
 </section>
+<div class="container">
+  <div class="row">
+    <div class="col">
 
-{{content}}
+{% for i in sportsmen %}
+
+  
+    
+    <div class="card" >
+      <img src="{{i.img_Head.url }}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{i.title}}</h5>
+        <p class="card-text">{{i.content}}</p>
+        <a href="#" class="btn btn-primary">Перейти куда-нибудь</a>
+      </div>
+    </div>
+    <br>
+{% endfor %}
+  
+  
+  <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+      </ul>
+  </nav>
+  <br>
+ 
+
+    </div>
+  </div>
+</div>
 
 
 {% endblock content %}

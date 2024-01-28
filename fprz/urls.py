@@ -19,7 +19,8 @@ from django.urls import path,include
 from main import views
 from django.conf import settings
 from django.conf.urls.static import static
-
+from fprz.settings import DEBUG
+import debug_toolbar
 document_patterns=[
     path('document', views.document,name="doc"),
     path('pologeniya', views.pologeniya,name="polog"),
@@ -29,9 +30,16 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("", views.index,name='index'),
     path("documents/", include(document_patterns)),
+    
+    
 ]
 
-if settings.DEBUG:
+if DEBUG:
+     urlpatterns +=[path("__debug__/", include("debug_toolbar.urls")),]
+
+
+
+if DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 '''

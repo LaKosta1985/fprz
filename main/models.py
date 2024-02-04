@@ -18,6 +18,7 @@ class New(models.Model):
         db_table = 'new'
         verbose_name = 'Новость'  
         verbose_name_plural = 'Новости'
+     
 
     def __str__(self):
         return self.title

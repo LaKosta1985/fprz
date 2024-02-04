@@ -1,10 +1,24 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
 from .models  import New
+from django.core.paginator import Paginator
 def index(request):
    news=New.objects.all()
-   return render(request,'index.html',context={"sportsmen":news,'title':'Main'})
+   paginator=Paginator(news,2)
+   current_page=paginator.page(1)
+   context= {
+      "page": current_page,
+      "title": "Main",
+   }
+
+   return render(request,'index.html', context)
    
+
+
+
+
+
+
 def document(request):
    #sportsmen=Sportsmen.objects.all()
    #return render(request,"index.html",context={"sportsmen":sportsmen})

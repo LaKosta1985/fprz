@@ -28,7 +28,6 @@ document_patterns=[
 ]
 urlpatterns = [
     path("", views.index,name='index'),
-    path("<int:page>/", views.index,name='index'),
     path("documents/", include(document_patterns)),
     path('admin/', admin.site.urls),
     

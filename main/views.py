@@ -2,10 +2,11 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
 from .models  import New
 from django.core.paginator import Paginator
-def index(request,page=1):
+def index(request):
+   page=request.GET.get('page',1)
    news=New.objects.all()
    paginator=Paginator(news,2)
-   current_page=paginator.page(page)
+   current_page=paginator.page(int(page))
    context= {
       "page": current_page,
       "title": "Main",

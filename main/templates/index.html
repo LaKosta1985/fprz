@@ -41,7 +41,7 @@
         {% for p in  page.paginator.page_range %}
         {% if p >= page.number|add:-2 and p <= page.number|add:2 %}
         <li class="page-item {% if page.number == p %}active{% endif %}">
-          <a class="page-link" href="?page={{p}}">{{p}}</a>
+          <a class="page-link" href="?page={{p}}&q={{query}}">{{p}}</a>
         </li>
         {% endif %}
         {% endfor %}

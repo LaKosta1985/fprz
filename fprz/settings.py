@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.postgres',
     'main',
+    'users',
     "debug_toolbar",
     
 ]
@@ -59,7 +60,7 @@ ROOT_URLCONF = 'fprz.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR/'TEMPLATES'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

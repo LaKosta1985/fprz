@@ -31,7 +31,8 @@ urlpatterns = [
     path("documents/", include(document_patterns)),
     path('admin/', admin.site.urls),
     path('search/', views.index,name='search'),
-    
+    #path('user/',include('users.urls', namespace='user')),
+    path('user/', include(('users.urls','users'), namespace='users')),
     
 ]
 

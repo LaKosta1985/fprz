@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.postgres',
     'main',
     "debug_toolbar",
     
@@ -79,8 +80,12 @@ WSGI_APPLICATION = 'fprz.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'fprz',
+        'USER':'admin',
+        'PASSWORD':'25111985admin',
+        'HOST': 'localhost',
+        "PORT":'5432',
     }
 }
 

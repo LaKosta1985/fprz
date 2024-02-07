@@ -22,8 +22,24 @@
     <div class="card" >
       <img src="{{i.img_Head.url }}" class="card-img-top" alt="...">
       <div class="card-body">
-        <h5 class="card-title">{{i.title}}</h5>
-        <p class="card-text">{{i.content}}</p>
+        <h5 class="card-title">
+          {% autoescape off %}
+          {% if i.headline %}
+          {{i.headline}}
+          {% else %}
+          {{i.title}}
+          {% endif %}
+          {% endautoescape %}
+        </h5>
+        <p class="card-text">
+          {% autoescape off %}
+          {% if i.bodyline %}
+          {{i.bodyline}}
+          {% else %}
+          {{i.content}}
+          {% endif %}
+          {% endautoescape %}
+        </p>
         <a href="#" class="btn btn-primary">Перейти куда-нибудь</a>
       </div>
     </div>

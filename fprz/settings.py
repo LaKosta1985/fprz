@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'main',
     'users',
     "debug_toolbar",
+    'django_cleanup.apps.CleanupConfig',
     
 ]
 

@@ -1,18 +1,37 @@
+from pyexpat.errors import messages
 from django.contrib import auth
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
 from django.urls import reverse
 
-from users.forms import UserLoginForm
+from users.forms import UserLoginForm, UserRegistrationForm
 
 
 def registration(request):
-  
-   context= {
-      "title": "Main",
-   }
+    if request.method == 'POST':
+        form = UserRegistrationForm(data=request.POST)
+        if form.is_valid():
+            form.save()
 
-   return render(request,'registration.html', context)
+           # session_key = request.session.session_key
+
+            user = form.instance
+            auth.login(request, user)
+
+            #if session_key:
+                #Cart.objects.filter(session_key=session_key).update(user=user)
+            #messages.success(request, f"{user.username}, Вы успешно зарегистрированы и вошли в аккаунт")
+            return HttpResponseRedirect(reverse('index'))
+    else:
+        form = UserRegistrationForm()
+    
+    context = {
+        'title': 'Home - Регистрация',
+        'form': form
+    }
+    return render(request, 'registration.html', context)
+
+ 
    
 
 def login(request):
@@ -57,8 +76,6 @@ def profile(request):
 
 def logout(request):
   
-   context= {
-      "title": "Main",
-   }
-
-   return render(request,'logout.html', context)
+    #messages.success(request, f"{request.user.username}, Вы вышли из аккаунта")
+    auth.logout(request)
+    return redirect(reverse('index'))

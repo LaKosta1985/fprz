@@ -46,10 +46,18 @@
 									<ul>
 										<li><a href="/sportsmens/federMember">Члены Федерации</a></li>
 										<li><a href="/sportsmens/record">Рекорды Рязанской области ФПР</a></li>
-										<li><a href="{% url "users:logout"%}">Выйти</a></li>
-										<li><a href="{% url "users:profile"%}">Личный кабинет</a></li>
+										
+										
+										{% if not user.is_authenticated %}
 										<li><a href="{% url "users:login"%}">Войти</a></li>
-										<li><a href="/sportsmens/create_sport">Регистрация(для членов Федерации)</a></li>
+										{% else %}
+										
+										{% if user.is_admin or user.is_staff %}
+                                        <li><a href="{% url "admin:index" %}">Админ панель</a></li>
+                                        {% endif %}
+										<li><a href="{% url "users:profile"%}">Личный кабинет</a></li>
+										<li><a href="{% url "users:logout"%}">Выйти</a></li>
+										{% endif %}
 									</ul>
 								</li>
 								<li>

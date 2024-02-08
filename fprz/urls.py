@@ -21,11 +21,13 @@ from django.conf import settings
 from django.conf.urls.static import static
 from fprz.settings import DEBUG
 import debug_toolbar
+
 document_patterns=[
     path('document', views.document,name="doc"),
     path('pologeniya', views.pologeniya,name="polog"),
     path('normativ', views.normativ,name="norm"),
 ]
+
 urlpatterns = [
     path("", views.index,name='index'),
     path("documents/", include(document_patterns)),

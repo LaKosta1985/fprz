@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'main',
     'users',
     "debug_toolbar",
+    'django_cleanup.apps.CleanupConfig',
     
 ]
 
@@ -152,3 +153,5 @@ INTERNAL_IPS = [
     "127.0.0.1",
     # ...
 ]
+
+AUTH_USER_MODEL='users.User'

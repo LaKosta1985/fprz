@@ -33,7 +33,7 @@ urlpatterns = [
     path("documents/", include(document_patterns)),
     path('admin/', admin.site.urls,name='admin'),
     path('search/', views.index,name='search'),
-    #path('user/',include('users.urls', namespace='user')),
+    #path('user/',include('users.urls', namespace='users')),
     path('user/', include(('users.urls','users'), namespace='users')),
     
 ]

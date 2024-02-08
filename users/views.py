@@ -1,10 +1,12 @@
-from pyexpat.errors import messages
-from django.contrib import auth
+
+from django.contrib.auth.decorators import login_required
+from django.contrib import auth,messages
+from django.db.models import Prefetch
 from django.shortcuts import redirect, render
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
 from django.urls import reverse
 
-from users.forms import UserLoginForm, UserRegistrationForm
+from users.forms import ProfileForm, UserLoginForm, UserRegistrationForm
 
 
 def registration(request):
@@ -20,7 +22,7 @@ def registration(request):
 
             #if session_key:
                 #Cart.objects.filter(session_key=session_key).update(user=user)
-            #messages.success(request, f"{user.username}, Вы успешно зарегистрированы и вошли в аккаунт")
+            messages.success(request, f"{user.username}, Вы успешно зарегистрированы и вошли в аккаунт")
             return HttpResponseRedirect(reverse('index'))
     else:
         form = UserRegistrationForm()
@@ -46,7 +48,7 @@ def login(request):
 
             if user:
                 auth.login(request, user)
-                #messages.success(request, f"{username}, Вы вошли в аккаунт")
+                messages.success(request, f"{username}, Вы вошли в аккаунт")
 
                 #if session_key:
                     #Cart.objects.filter(session_key=session_key).update(user=user)
@@ -65,17 +67,43 @@ def login(request):
     }
     return render(request, 'login.html', context)
 
-def profile(request):
-  
-   context= {
-      "title": "Main",
-   }
 
-   return render(request,'profile.html', context)
+
+
+@login_required
+def profile(request):
+    if request.method == 'POST':
+        form = ProfileForm(data=request.POST, instance=request.user, files=request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Профайл успешно обновлен")
+            return HttpResponseRedirect(reverse('user:profile'))
+    else:
+        form = ProfileForm(instance=request.user)
+
+    #orders = Order.objects.filter(user=request.user).prefetch_related(
+                #Prefetch(
+                    #"orderitem_set",
+                    #queryset=OrderItem.objects.select_related("product"),
+                #)
+           # ).order_by("-id")
+        
+
+        context = {
+            'title': 'Home - Кабинет',
+            'form': form,
+        #'orders': orders,
+        }
+    return render(request, 'profile.html', context)
+
    
 
+
+
+
+@login_required
 def logout(request):
   
-    #messages.success(request, f"{request.user.username}, Вы вышли из аккаунта")
+    messages.success(request, f"{request.user.username}, Вы вышли из аккаунта")
     auth.logout(request)
     return redirect(reverse('index'))

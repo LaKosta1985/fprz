@@ -53,9 +53,9 @@ def login(request):
                 #if session_key:
                     #Cart.objects.filter(session_key=session_key).update(user=user)
 
-                #redirect_page = request.POST.get('next', None)
-                #if redirect_page and redirect_page != reverse('user:logout'):
-                    #return HttpResponseRedirect(request.POST.get('next'))
+                redirect_page = request.POST.get('next', None)
+                if redirect_page and redirect_page != reverse('user:logout'):
+                    return HttpResponseRedirect(request.POST.get('next'))
                     
                 return HttpResponseRedirect(reverse('index'))
     else:

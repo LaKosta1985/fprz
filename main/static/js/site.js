@@ -1,4 +1,31 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿ var rect = document.querySelectorAll(".randomImg");
+ 
+rect.forEach(item=>item.addEventListener("click", function () { 
+	 var SrcItem =event.target.getAttribute('src');
+  
 
-// Write your JavaScript code.
+}));
+
+
+ (function ($) {
+
+        $('.swipebox').swipebox();
+
+    })(jQuery);
+
+
+$(document).ready(function () {
+	
+
+		$('.content_toggle').click(function (event) {
+			event.preventDefault();   // блокировать переход по ссылке
+
+			const $link = $(event.target); // a - конкретная ссылка которая была нажата
+			const $content = $link.prev('div.content_block');  // div -контент блок перед ссылкой
+
+			$content.toggleClass('hide'); // показать или скрыть контент блок
+
+			const htmlLink = $content.hasClass('hide') ? 'Подробнее' : 'Скрыть';
+			$link.html(htmlLink);
+		});
+	});

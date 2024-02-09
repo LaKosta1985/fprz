@@ -12,6 +12,7 @@
 		<link rel="stylesheet" href="{% static "/css/main.css" %}" />
 		<link rel="stylesheet" href="{% static "/css/Mymain.css" %}" />
 	    <link rel="stylesheet" href="{% static "/css/button.css" %}" />
+		<link rel="stylesheet" href="{% static "/css/modal.css" %}" />
 		<noscript><link rel="stylesheet" href="{% static "/css/noscript.css" %}" /></noscript>
 		<link rel="icon" type="image/x-icon" href="{% static "/favicon.ico" %}">
 	    <meta name="description" content="Федерация пауэрлифтинга Рязани и Рязанской области, ФПР"/>
@@ -19,9 +20,49 @@
 
 		
 </head>
-	<body class="homepage is-preload">
+
+	
+	
+
+
+
+		{% if messages  %}
+		{% for message in messages %}
+		{% if message.tags == 'success' %}
+		
+		
+		<body class="homepage is-preload">
+
+			<div class="modalBackground" id="modalBackground">
+				<div class="modalActive">
+	
+					<div class="modalClose">
+						<img src="{% static "/img/modalCross.png" %}" />
+					</div>
+	
+					<div class="modalWindow">
+			{{message}}
+					</div>
+	
+				</div>
+			</div>
+		
+		
+		
+		{% endif %}
+		{% endfor %}
+		{% endif %}
+
+
+
+
+
+
+
+
+
+
 		<div id="page-wrapper">
-			
 			
 			
 				<div id="header">
@@ -92,9 +133,12 @@
 
 	
            		    <div id="view">
+
 							{% include "notification.html" %}
 							{% block content%}
 							{% endblock content %}
+
+
 						
 					</div>
 			
@@ -290,6 +334,12 @@
 
 		</div>
 
+
+
+	
+
+
+
   			<script src="{% static "/js/jquery.min.js" %}"></script>
 			<script src="{% static "/js/jquery.dropotron.min.js" %}"></script>
 			<script src="{% static "/js/jquery.scrolly.min.js" %}"></script>
@@ -300,57 +350,26 @@
 			<script src="{% static "/js/main.js" %}"></script>
 			<script src="{% static "/js/intense.js" %}"></script>
 			<script src="{% static "/js/bootstrap.js" %}"></script>
-			<script src="{% static "/js/jquery-ajax.js" %}"></script>
-		    
+			<script src="{% static "/js/modal.js" %}"></script>
+			
+			  
+	
+			
+			
 
 
-<script type="text/javascript">
- var rect = document.querySelectorAll(".randomImg");
- 
-rect.forEach(item=>item.addEventListener("click", function () { 
-	 var SrcItem =event.target.getAttribute('src');
-  
+			<script type="text/javascript">
+				Trigger();
 
-}));
-//swipebox(rect);
-
-</script>
+			</script>
 
 
-
-
+			
 
 
 </body>
 </html>
 
 
-
-<script type="text/javascript">
-     (function ($) {
-
-        $('.swipebox').swipebox();
-
-    })(jQuery);
-</script>
-
-
-<script>
-	$(document).ready(function () {
-	
-
-		$('.content_toggle').click(function (event) {
-			event.preventDefault();   // блокировать переход по ссылке
-
-			const $link = $(event.target); // a - конкретная ссылка которая была нажата
-			const $content = $link.prev('div.content_block');  // div -контент блок перед ссылкой
-
-			$content.toggleClass('hide'); // показать или скрыть контент блок
-
-			const htmlLink = $content.hasClass('hide') ? 'Подробнее' : 'Скрыть';
-			$link.html(htmlLink);
-		});
-	});
-</script>
 
 

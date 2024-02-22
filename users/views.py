@@ -77,16 +77,9 @@ def profile(request):
         if form.is_valid():
             form.save()
             messages.success(request, "Профайл успешно обновлен")
-            return HttpResponseRedirect(reverse('user:profile'))
+            return HttpResponseRedirect(reverse('users:profile'))
     else:
         form = ProfileForm(instance=request.user)
-
-    #orders = Order.objects.filter(user=request.user).prefetch_related(
-                #Prefetch(
-                    #"orderitem_set",
-                    #queryset=OrderItem.objects.select_related("product"),
-                #)
-           # ).order_by("-id")
         
 
         context = {

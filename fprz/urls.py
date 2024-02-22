@@ -33,8 +33,10 @@ urlpatterns = [
     path("documents/", include(document_patterns)),
     path('admin/', admin.site.urls,name='admin'),
     path('search/', views.index,name='search'),
-    #path('user/',include('users.urls', namespace='users')),
     path('user/', include(('users.urls','users'), namespace='users')),
+    path("like/", views.like,name='like'),
+    path("like_/", views.like_,name='like_'),
+    path("contacts",views.contacts,name='contacts'),
     
 ]
 

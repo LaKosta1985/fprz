@@ -13,6 +13,7 @@
 		<link rel="stylesheet" href="{% static "/css/Mymain.css" %}" />
 	    <link rel="stylesheet" href="{% static "/css/button.css" %}" />
 		<link rel="stylesheet" href="{% static "/css/modal.css" %}" />
+		<link rel="stylesheet" href="{% static "/font-awesome/css/font-awesome.min.css" %}" />
 		<noscript><link rel="stylesheet" href="{% static "/css/noscript.css" %}" /></noscript>
 		<link rel="icon" type="image/x-icon" href="{% static "/favicon.ico" %}">
 	    <meta name="description" content="Федерация пауэрлифтинга Рязани и Рязанской области, ФПР"/>
@@ -85,7 +86,7 @@
 								<li>
 									<a href="#">Спортсмены</a>
 									<ul>
-										<li><a href="/sportsmens/federMember">Члены Федерации</a></li>
+										<li><a href="{% url "admin:index" %}">Члены Федерации</a></li>
 										<li><a href="/sportsmens/record">Рекорды Рязанской области ФПР</a></li>
 										
 										
@@ -154,7 +155,7 @@
 							
 								<section class="col-4 col-12-mobile">
 									<header>
-										<h2 class="icon solid fa-file circled"><span class="label">Карта сайта</span></h2>
+										<p><i class="fa fa-list-alt"></i></p>
 									</header>
 									<ul class="divided">
 													<li>
@@ -212,7 +213,8 @@
 							<!-- Posts -->
 								<section class="col-4 col-12-mobile">
 									<header>
-										<h2 class="icon solid fa-file circled"><span class="label">Карта сайта</span></h2>
+										<p><i class="fa fa-list-alt"></i></p>
+										
 									</header>
 									<ul class="divided">
 									
@@ -277,7 +279,8 @@
 
 								<section class="col-4 col-12-mobile">
 									<header>
-										<h2 class="icon solid fa-camera circled"><span class="label">Photos</span></h2>
+				
+										<p><i class=" fa fa-camera"></i></p>
 									</header>
 									<div class="row gtr-25">
 										<div class="col-6">
@@ -313,7 +316,7 @@
 										</header>
 										
 										<ul class="icons">
-											<li><a href="https://vk.com/fpr62" class="icon brands fa-vk"><span class="label">Мы есть вконтакте</span></a></li>
+											<li><a href="https://vk.com/fpr62" class="fa fa-vk" ><span class="label"></span></a></li>
 										
 										</ul>
 									</section>
@@ -359,12 +362,218 @@
 
 
 			<script type="text/javascript">
+				//скрипт скрытия ленты
 				Trigger();
 
 			</script>
 
+			<script type="text/javascript">
+				$(document).ready(function () {
+				
+			
+					$('.content_toggle').click(function (event) {
+						event.preventDefault();   // блокировать переход по ссылке
+			
+						const $link = $(event.target); // a - конкретная ссылка которая была нажата
+						const $content = $link.prev('div.content_block');  // div -контент блок перед ссылкой
+			
+						$content.toggleClass('hide'); // показать или скрыть контент блок
+			
+						const htmlLink = $content.hasClass('hide') ? 'Подробнее' : 'Скрыть';
+						$link.html(htmlLink);
+					});
+				});
+			</script>
+			
+
+
+
+			<script type="text/javascript">
+				//скрипт для по-дс-че-та про-см-от-ров
+				var timer;
+				var showCounter = 0;
+				var block_show = true;
+				var start = null;
+				var counter = null;
+				var counter1 = null;
+				var count = null;
+				var nameCount = null;
+				var par1;
+				function scrollTracking() {
+			
+					var wt = $(window).scrollTop();
+					var wh = $(window).height();
+					var d = $(".view_count").toArray().map(el => el.id);
+			
+					
+			
+					for (let i = 0; i < d.length; i++) {
+						nameCount = null;
+						count = null;
+			
+						var et = $("#" + d[i]).offset().top;
+						var eh = $("#" + d[i]).outerHeight();
+			
+						if (et >= wt && et + eh <= wh + wt) {
+							
+							par1 = d[i];
+							
+			
+							if (block_show == true) {
+								setTimeout(function () { countTimer(par1) }, 1000);
+			
+								block_show = false;
+								counter1 = i;
+							}
+			
+			
+						}
+						else if (counter1 == i) {
+							
+			
+							block_show = true;
+						}
+			
+			
+			
+			
+					}
+			
+			
+			
+				}
+			
+			
+			
+			
+				function countTimer(par1) {
+					
+					
+					var data = {
+			
+						nameCount: par1
+					};
+			
+					$.ajax({
+						type: 'GET',
+						url: '/',
+						contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+						data: data,
+						success: function (result) {
+							
+						},
+						error: function () {
+			
+							console.log('Failed ');
+						}
+					})
+			
+				}
+			
+			
+				window.onscroll = () => {
+			
+					clearTimeout(timer);
+					/* wait until 400 ms for callback */
+					timer = setTimeout(scrollTracking, 400);
+				}
+			
+			</script>
+			
+			
+			
+
 
 			
+			<script type="text/javascript">
+				//скрипт для подсчета лайков
+				function LikeFunc(id) {
+			
+			
+					var data = {
+			
+						LikeCount: id
+					};
+			
+			
+					if (!document.cookie.split(';').filter(function (item) {
+						return item.trim().indexOf('' + id + '=') == 0
+					}).length) {
+						document.cookie = "" + id + "=false;expires=31 Aug 2075 00:00:00 GMT;";
+					
+					}
+			
+			
+			
+					if (document.cookie.split(';').filter(function (item) {
+						return item.indexOf('' + id + '=false') >= 0
+					}).length) {
+						document.cookie = "" + id + "=true;expires=31 Aug 2075 00:00:00 GMT;";
+			
+			
+						$.ajax({
+							type: 'GET',
+							url: 'like',
+							contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+							data: data,
+							success: function (result) {
+								console.log('отправлено плюс');
+								document.getElementById('like_' + id).value++;
+							},
+							error: function () {
+			
+								console.log('Failed плюс');
+							}
+						})
+			
+					}
+			
+			
+			
+			
+			
+					else {
+						document.cookie = "" + id + "=false;expires=31 Aug 2075 00:00:00 GMT;";
+				//сохраняем куку с минусом
+			
+			
+						$.ajax({
+							type: 'GET',
+							url: 'like_',
+							contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+							data: data,
+							success: function (result) {
+								if (document.getElementById('like_' + id).value>0)
+								{
+									document.getElementById('like_' + id).value--;
+								}
+								
+			
+								console.log('отправлено минус');
+								
+							},
+							error: function () {
+			
+								console.log('Failed минус ');
+							}
+						})
+			
+					}
+			
+			
+			
+			
+				}
+			
+			
+			
+			</script>
+			
+
+
+			
+
+
 
 
 </body>

@@ -2,7 +2,7 @@
 {% extends "base.html" %}
 {% block title %}{{title}}{% endblock title %}
 {% block content %}
-
+{% load static %}
 <section id="banner">
 <header class="majorline">
     <h2>Федерация Пауэрлифтинга Рязани и Рязанской области (РФП)</h2>
@@ -14,11 +14,16 @@
  
 </header>
 </section>
-<div class="container">
+<div class="container ">
   <div class="row">
     <div class="col">
 
+
+      
+
+
 {% for i in page %}
+
     <div class="card" >
       <img src="{{i.img_Head.url }}" class="card-img-top" alt="...">
       <div class="card-body">
@@ -27,10 +32,12 @@
           {% if i.headline %}
           {{i.headline}}
           {% else %}
-          {{i.title}}
+          <div class="view_count" id="{{i.id}}" >{{i.title}}</div>
+         
           {% endif %}
           {% endautoescape %}
         </h5>
+        <div class="content_block hide">
         <p class="card-text">
           {% autoescape off %}
           {% if i.bodyline %}
@@ -40,9 +47,23 @@
           {% endif %}
           {% endautoescape %}
         </p>
-        <a href="#" class="btn btn-primary">Перейти куда-нибудь</a>
+        
       </div>
+      {% if  i.content|length > 200 %}
+      <a class="content_toggle" href="#">Подробнее</a>
+      {% endif %}
+
+
     </div>
+    
+    <div class="datecounter row">
+      <div class="col card-text"><small class="text-muted">{{i.date}}</small></div>
+      <div class="col card-text"><small class="text-muted"><img onclick="LikeFunc(id)" src="{% static "/images/false.svg" %}" title="Лайки" class="imgLike" id={{i.id}}><input disabled value={{i.like}} id="like_{{i.id}}"></small></div>
+      <div class="col card-text"><small class="text-muted"><img src="{% static "/images/iconCounter.svg" %}" title="Просмотры" class="imgCount"></small>{{i.count_view}}</div>
+    </div>
+   
+    </div>
+  
     <br>
 {% endfor %}
   
@@ -78,3 +99,9 @@
 
 
 {% endblock content %}
+
+
+
+
+
+

@@ -75,7 +75,24 @@
                                     <div class="alert alert-danger alert-dismissible fade show">{{form.email.errors}}</div>
                                     {% endif %}
                             </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="id_tel" class="form-label">Телефон</label>
+                                <input type="text" class="form-control" id="id_tel"
+                                    name="tel"
+                                    placeholder="Введите ваш телефон *8-900-111-1111"
+                                    value="{{ form.tel.value }}"
+                                    >
+                                    {% if form.tel.errors %}
+                                    <div class="alert alert-danger alert-dismissible fade show">{{form.tel.errors}}</div>
+                                    {% endif %}
+                            </div>
                         </div>
+                        <input type="hidden" class="form-control" id="id_status"
+                        name="status"
+                
+                        value="{{ form.status.value }}"
+                        >
+
                         <button type="submit" class="btn btn-dark">Сохранить</button>
                     </form>
                 </div>

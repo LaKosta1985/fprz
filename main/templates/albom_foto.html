@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}
+  {{ title }}
+{% endblock %}
+{% block content %}
+  {% load static %}
+  <div class="container">
+    <div class="row">
+          {% if albom %}
+            {% for a in albom %}
+            
+            <div class="col">
+              <div class="card" style="width: 10rem">
+                {% if a.image %}
+                  <img src="{{ a.image.url }}"  alt="..." />
+                {% else %}
+                  <img src="{% static "load/users/no-photo.jpg" %}"  alt="..." />
+                {% endif %}
+                <div class="card-body">
+                  <h5 class="card-title">{{ a.title }}</h5>
+                  <p class="card-text">{{ a.name }}</p>
+                  <a class="btn btn-secondary" href="{{a.image.url}}">Смотреть</a>
+                </div>
+              </div>
+            </div>
+           
+            {% endfor %}
+          {% endif %}
+    
+    </div>
+</div>
+{% endblock %}

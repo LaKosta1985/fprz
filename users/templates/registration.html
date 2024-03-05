@@ -52,6 +52,16 @@
                                 {% endif %}
                         </div>
                         <div class="col-md-6 mb-3">
+                            <label for="id_tel" class="form-label">Телефон</label>
+                            <input type="text" class="form-control" id="id_tel"
+                                value="{% if form.tel.value %}{{ form.tel.value }}{% endif %}"
+                                name="tel"
+                                placeholder="Введите ваш телефон">
+                                {% if form.tel.errors %}
+                                <div class="alert alert-danger alert-dismissible fade show">{{form.tel.errors}}</div>
+                                {% endif %}
+                        </div>
+                        <div class="col-md-6 mb-3">
                             <label for="id_password1" class="form-label">Пароль*</label>
                             <input type="password" class="form-control" id="id_password1"
                                 value="{% if form.password1.value %}{{ form.password1.value }}{% endif %}"

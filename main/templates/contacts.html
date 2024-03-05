@@ -4,46 +4,55 @@
 {% endblock %}
 {% block content %}
   {% load static %}
-  <div class="container_contact">
-    <div class="row justify-content-center">
+  <div class="container">
+    <div class="row ">
       {% for a in users %}
-        {% if a.username in 'prezident' %}
+        {% if a.status == "prezident" %}
         <div class="col">
           <div class="card" style="width: 20rem">
             {% if a.image %}
             <img src="{{ a.image.url }}" class="card-img-top" alt="..." />
             {% else %} 
-            <img src="{{"load/users/no-photo.jpg"}}" class="card-img-top" alt="..." />
+            <img src="{% static "load/users/no-photo.jpg" %}" class="card-img-top" alt="..." />
             {% endif %}
             
             <div class="card-body">
               <h5 class="card-title">Президент Федерации</h5>
               <p class="card-text">{{ a.first_name }} {{ a.last_name}}</p>
               <h5 class="card-title">Телефон президента</h5>
-              <p class="card-text">7-915-590-5978</p>
+              {% if a.tel == 'None' %}
+              <p class="card-text">-</p>
+              {% else %}
+              <p class="card-text">{{a.tel}}</p>
+              {% endif %}
+              
               <h5 class="card-title">Почта президента</h5>
-              <p class="card-text">ryazan-fpr@mail.ru</p>
+              <p class="card-text">{{a.email}}</p>
               <a href="#" class="btn btn-outline-secondary">Написать</a>
             </div>
           </div>
         </div>
         {% endif %}
         
-        {% if a.username in 'secretar' %}
+        {% if a.status == "secret" %}
         <div class="col">
           <div class="card" style="width: 20rem">
             {% if a.image %}
             <img src="{{ a.image.url }}" class="card-img-top" alt="..." />
             {% else %} 
-            <img src="{{"load/users/no-photo.jpg"}}" class="card-img-top" alt="..." />
+            <img src="{% static "load/users/no-photo.jpg" %}" class="card-img-top" alt="..." />
             {% endif %}
             <div class="card-body">
               <h5 class="card-title">Секретарь сайта</h5>
               <p class="card-text">{{ a.first_name }} {{ a.last_name}}</p>
               <h5 class="card-title">Телефон секретаря</h5>
-              <p class="card-text">7-915-590-5978</p>
+              {% if a.tel == 'None' %}
+              <p class="card-text">-</p>
+              {% else %}
+              <p class="card-text">{{a.tel}}</p>
+              {% endif %}
               <h5 class="card-title">Почта секретаря</h5>
-              <p class="card-text">ryazan-fpr@mail.ru</p>
+              <p class="card-text">{{a.email}}</p>
               <a href="#" class="btn btn-outline-secondary">Написать</a>
             </div>
           </div>
@@ -51,42 +60,50 @@
         {% endif %}
 
 
-        {% if a.username in 'doping' %}
+        {% if a.status == "antidoping"%}
         <div class="col">
           <div class="card" style="width: 20rem">
             {% if a.image %}
             <img src="{{ a.image.url }}" class="card-img-top" alt="..." />
             {% else %} 
-            <img src="{{"load/users/no-photo.jpg"}}" class="card-img-top" alt="..." />
+            <img src="{% static "load/users/no-photo.jpg" %}" class="card-img-top" alt="..." />
             {% endif %}
             <div class="card-body">
               <h5 class="card-title">Ответственный за антидопинговую работу</h5>
               <p class="card-text">{{ a.first_name }} {{ a.last_name}}</p>
               <h5 class="card-title">Телефон</h5>
-              <p class="card-text">7-915-590-5978</p>
+              {% if a.tel == 'None' %}
+              <p class="card-text">-</p>
+              {% else %}
+              <p class="card-text">{{a.tel}}</p>
+              {% endif %}
               <h5 class="card-title">Почта</h5>
-              <p class="card-text">ryazan-fpr@mail.ru</p>
+              <p class="card-text">{{a.email}}</p>
               <a href="#" class="btn btn-outline-secondary">Написать</a>
             </div>
           </div>
         </div>
         {% endif %}
 
-        {% if a.username in 'admin' %}
+        {% if a.status == "admin" %}
         <div class="col">
           <div class="card" style="width: 20rem">
             {% if a.image %}
             <img src="{{ a.image.url }}" class="card-img-top" alt="..." />
             {% else %} 
-            <img src="{{"load/users/no-photo.jpg"}}" class="card-img-top" alt="..." />
+            <img src="{% static "load/users/no-photo.jpg" %}" class="card-img-top" alt="..." />
             {% endif %}
             <div class="card-body">
               <h5 class="card-title">Администратор сайта</h5>
               <p class="card-text">{{ a.first_name }} {{ a.last_name}}</p>
               <h5 class="card-title">Телефон администратора</h5>
-              <p class="card-text">7-915-590-5978</p>
-              <h5 class="card-title">Почта секретаря</h5>
-              <p class="card-text">ryazan-fpr@mail.ru</p>
+              {% if a.tel == 'None' %}
+              <p class="card-text">-</p>
+              {% else %}
+              <p class="card-text">{{a.tel}}</p>
+              {% endif %}
+              <h5 class="card-title">Почта администратора</h5>
+              <p class="card-text">{{a.email}}</p>
               <a href="#" class="btn btn-outline-secondary">Написать</a>
             </div>
           </div>

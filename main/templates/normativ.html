@@ -1,7 +1,46 @@
-{% extends "base.html" %}
-{% block title %}{{title}}{% endblock title %}
+{% extends 'base.html' %}
+{% block title %}
+  {{ title }}
+{% endblock %}
 {% block content %}
-<div>
-    <h2>нормативы</h2>
-</div>
-{% endblock content %}
+  <div>
+    {% if tables and categories %}
+      {% for t in tables %}
+        <h3>{{ t.title }}</h3>
+        <table class="normativ">
+          <tr>
+            <th>Весовая категория,кг</th>
+            <th>МСМК</th>
+            <th>МС</th>
+            <th>КМС</th>
+            <th>I</th>
+            <th>II</th>
+            <th>III</th>
+            <th>I(ю)</th>
+            <th>II(ю)</th>
+            <th>III(ю)</th>
+          </tr>
+          {% for c in categories %}
+            {% if t.id == c.cut_id %}
+              <tr>
+                <td>{{ c.category }}</td>
+                <td>{{ c.msmk }}</td>
+                <td>{{ c.ms }}</td>
+                <td>{{ c.kms }}</td>
+                <td>{{ c.first }}</td>
+                <td>{{ c.second }}</td>
+                <td>{{ c.third }}</td>
+                <td>{{ c.first_j }}</td>
+                <td>{{ c.second_j }}</td>
+                <td>{{ c.third_j }}</td>
+              </tr>
+            {% endif %}
+          {% endfor %}
+        </table>
+      {% endfor %}
+    {% endif %}
+  </div>
+  <div>
+    {{object_Cat}}
+  </div>
+{% endblock %}

@@ -49,10 +49,42 @@
         </p>
         
       </div>
-      {% if  i.content|length > 200 %}
+      {% if  i.content and i.content|length > 300 %}
       <a class="content_toggle" href="#">Подробнее</a>
       {% endif %}
+<div>
+  {% if  i.img_Body_1 %}
+  <a rel="gallery-1" href="{{i.img_Body_1.url }}" class="swipebox">
+    <img src="{{i.img_Body_1.url }}" alt="" loading="lazy" height=100em >
+  </a>
+  {% endif %}
+  {% if  i.img_Body_2 %}
+  <a rel="gallery-1" href="{{i.img_Body_2.url }}" class="swipebox">
+    <img src="{{i.img_Body_2.url }}" alt="" loading="lazy" height=100em >
+  </a>
+  {% endif %}
+  {% if  i.img_Body_3 %}
+  <a rel="gallery-1" href="{{i.img_Body_3.url }}" class="swipebox">
+    <img src="{{i.img_Body_3.url }}" alt="" loading="lazy" height=100em >
+  </a>
+  {% endif %}
 
+  {% if  i.img_Body_4 %}
+  <a rel="gallery-1" href="{{i.img_Body_4.url }}" class="swipebox">
+    <img src="{{i.img_Body_4.url }}" alt="" loading="lazy" height=100em >
+  </a>
+  {% endif %}
+  {% if  i.img_Body_5 %}
+  <a rel="gallery-1" href="{{i.img_Body_5.url }}" class="swipebox">
+    <img src="{{i.img_Body_5.url }}" alt="" loading="lazy" height=100em >
+  </a>
+  {% endif %}
+  {% if  i.img_Body_6 %}
+  <a rel="gallery-1" href="{{i.img_Body_6.url }}" class="swipebox">
+    <img src="{{i.img_Body_6.url }}" alt="" loading="lazy" height=100em >
+  </a>
+  {% endif %}
+</div>
 
     </div>
     
@@ -98,8 +130,15 @@
 </div>
 
 
-{% endblock content %}
+<a href="{% url "zayavkaGet"%}">
+  <div class="email-bt" data-bs-toggle="modal" >
+     <div class="text-call">
+        <span>Отправить<br>заявку</span>
+     </div>
+  </div>
+  </a>
 
+{% endblock content %}
 
 
 

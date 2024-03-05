@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<div class="container">
+    <div class="row">
+       
+    <div class="sportsfpr62">
+        <h3>Заявка</h3>
+    </div>
+
+    <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+
+        <form method="post" action="{% url "zayavkaPost"%}" enctype="multipart/form-data" class="form">
+            {% csrf_token %}
+            <div class="fields">
+                <div class="field half">
+                    <label for="namesor">Название соревнований: *</label>
+                <input type="text" name="namesor" id="namesor" required minlength="2" maxlength="60"  />
+                </div>
+                <div class="field half">
+                    <label for="name">Имя: *</label>
+                    <input type="text" name="name" id="name" required minlength="2" maxlength="25" />
+                </div>
+                <div class="field half">
+                    <label for="lastname">Фамилия: *</label>
+                    <input type="text" name="lastname" id="lastname" required minlength="2" maxlength="25" />
+                </div>
+            <div class="field half">
+                <label for="thirdname">Отчество: *</label>
+                <input type="text" name="thirdname" id="thirdname" required minlength="2" maxlength="25" />
+            </div>
+                <div class="field half">
+                    <label for="year">Дата рождения: *</label>
+                    <input type="date" style="color:black" name="date" id="date" value="2000-01-01"  />
+                </div>
+                <div class="field half">
+                    <label for="dv">Дивизион: *</label>
+                    <select name="dv">
+                        <option value=Экип.>Экипировка</option>
+                        <option value=Клас.>Классика</option>
+                    </select>
+                </div>
+                <div class="field half">
+                    <label for="raz">Разряд/Звание: *</label>
+                    <select name="raz">
+                        <option value=б/р>б/р</option>
+                        <option value=1>1</option>
+                        <option value=2>2</option>
+                        <option value=3>3</option>
+                        <option value=кмс>КМС</option>
+                        <option value=мс>МС</option>
+                        <option value=мсмк>МСМК</option>
+                    </select>
+                </div>
+                <div class="field half">
+                    <label for="kat">Категория: *</label>
+                    <select name="kat">
+                        <option value=43>43</option>
+                        <option value=47>47</option>
+                        <option value=52>52</option>
+                        <option value=53>53</option>
+                        <option value=57>57</option>
+                        <option value=59>59</option>
+                        <option value=63>63</option>
+                        <option value=66>66</option>
+                        <option value=69>69</option>
+                        <option value=74>74</option>
+                        <option value=76>76</option>
+                        <option value=83>83</option>
+                        <option value=84>84</option>
+                        <option value=84+>84+</option>
+                        <option value=93>93</option>
+                        <option value=105>105</option>
+                        <option value=120>120</option>
+                        <option value=120+>120+</option>
+                    </select>
+                </div>
+                <div class="field half">
+                    <label for="tren">Имя тренера\лично: *</label>
+                    <input type="text" name="tren" id="tren" required minlength="2" maxlength="30" />
+                </div>
+
+                <div class="field half">
+                    <label for="email">Ваш Email: *</label>
+                    <input type="email" name="email" id="email" required />
+                </div>
+
+                <div class="field half">
+                    <label for="tel">Ваш телефон: *</label>
+                <input type="tel" placeholder="введите ваш телефон" name="tel" id="tel" required maxlength="20" />
+                </div>
+
+                <div class="field half">
+                    <label for="rez">Лучший результат, где показан (в течение года):</label>
+                    <input type="text" name="rez" id="rez" min="4" max="150" />
+                </div>
+                <div class="field half" id="mydiv">
+                  
+
+                </div>
+
+            </div>
+
+            <br />
+
+    
+
+
+
+
+
+
+            <ul class="actions">
+
+                <li><input type="submit" value="Отправить" class="primary" /></li>
+                <li><input type="reset" value="Очистить" /></li>
+                
+
+            </ul>
+
+            
+       
+       
+        
+        </form>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+  
+
+{% if name %}
+    <script type="text/javascript" charset="utf-8">
+    alert("Спасибо- {{name}} -ваша заявка отправлена!");
+    console.log("телефон чела-{{tel}}")
+    
+    </script>
+{% endif %}
+ 
+
+
+{% endblock content %}

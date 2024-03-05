@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block title %}
+  {{ title }}
+{% endblock %}
+{% block content %}
+  <div>
+    {% if tables and categories %}
+      {% for t in tables %}
+        <h3>{{ t.title }}</h3>
+        <table class="normativ">
+            <th>Движение</th>
+            <th>Результат</th>
+            <th>Имя рекордсмена</th>
+            <th>Дата рекорда</th>
+            <th>Место проведения</th>
+          </tr>
+          {% for c in categories %}
+            {% if t.id == c.cut_rec_id %}
+            <tr>
+              <th colspan="5" style="text-align: center;">
+                {{c.category}}
+              </th>
+            </tr>
+              <tr>
+                <td>Приседание</td>
+                <td>{{ c.squat }}</td>
+                <td>{{ c.squat_name }}</td>
+                <td>{{ c.date_squat }}</td>
+                <td>{{ c.place_squat }}</td>
+              </tr>
+              <tr>
+                <td>Жим</td>
+                <td>{{ c.press }}</td>
+                <td>{{ c.press_name }}</td>
+                <td>{{ c.date_press }}</td>
+                <td>{{ c.place_press }}</td>
+              </tr>
+              <tr>
+                <td>Тяга</td>
+                <td>{{ c.lift }}</td>
+                <td>{{ c.lift_name }}</td>
+                <td>{{ c.date_lift }}</td>
+                <td>{{ c.place_lift }}</td>
+              </tr>
+              <tr>
+                <td>Сумма</td>
+                <td>{{ c.sum}}</td>
+                <td>{{ c.sum_name }}</td>
+                <td>{{ c.date_sum }}</td>
+                <td>{{ c.place_sum }}</td>
+              </tr>
+            {% endif %}
+          {% endfor %}
+        </table>
+      {% endfor %}
+    {% endif %}
+  </div>
+  <div>
+    {{object_Cat}}
+  </div>
+{% endblock %}

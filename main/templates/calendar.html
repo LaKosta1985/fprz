@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}{{title}}{% endblock title %}
+{% block content %}
+
+<div>
+    {% if calendar %}
+        <h3>Календарь спортивных мероприятий рязанских пауэрлифтеров на текущий год</h3>
+        <table class="normativ">
+          <tr>
+            <th>Положение</th>
+            <th>Статус</th>
+            <th>Уровень допуска</th>
+            <th>Название соревнований</th>
+            <th>Дисциплины</th>
+            <th>Возрастные группы</th>
+            <th>Начало соревнований</th>
+            <th>Окончание соревнований</th>
+            <th>Место проведения</th>
+            <th>Срок приема заявок</th>
+            <th>Срок изменения заявок</th>
+            <th>Заявка</th>
+          </tr>
+          {% for c in calendar %}
+              <tr>
+                <td>положение</td>
+                <td>{{c.status}}</td>
+                <td>{{c.dopusk}}</td>
+                <td>{{c.name}}</td>
+                <td>{{c.disciplina}}</td>
+                <td>{{c.vozrast}}</td>
+                <td>{{c.start}}</td>
+                <td>{{c.finish}}</td>
+                <td>{{c.place}}</td>
+                <td>{{c.srok}}</td>
+                <td>{{c.srokEdit}}</td>
+                {% if c.zayav %}
+                <td><a class="page-link" href="{{c.zayav}}">Подать заявку</a></td>
+                {% else %}
+                <td>ссылка на бланк заявки</td>
+                {% endif %}
+               
+              </tr>
+          {% endfor %}
+        </table>
+    {% endif %}
+  </div>
+  <div>
+    {{object_Cat}}
+  </div>
+{% endblock content %}

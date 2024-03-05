@@ -14,16 +14,17 @@
 	    <link rel="stylesheet" href="{% static "/css/button.css" %}" />
 		<link rel="stylesheet" href="{% static "/css/modal.css" %}" />
 		<link rel="stylesheet" href="{% static "/font-awesome/css/font-awesome.min.css" %}" />
+		<link rel="stylesheet" href="{% static "/swipebox-master/src/css/swipebox.css" %}"/>
 		<noscript><link rel="stylesheet" href="{% static "/css/noscript.css" %}" /></noscript>
 		<link rel="icon" type="image/x-icon" href="{% static "/favicon.ico" %}">
 	    <meta name="description" content="Федерация пауэрлифтинга Рязани и Рязанской области, ФПР"/>
-	   
 
-		
+	
 </head>
 
 	
-	
+	  
+
 
 
 
@@ -86,7 +87,7 @@
 								<li>
 									<a href="#">Спортсмены</a>
 									<ul>
-										<li><a href="{% url "admin:index" %}">Члены Федерации</a></li>
+										<li><a href="/sportsmens/feder_member">Члены Федерации</a></li>
 										<li><a href="/sportsmens/record">Рекорды Рязанской области ФПР</a></li>
 										
 										
@@ -107,8 +108,8 @@
 									<ul>
 										<li><a href="/sorev/calendar">Календарь соревнований</a></li>
 										<li><a href="/sorev/protocol">Протоколы</a></li>
-										<li><a href="/sorev/foto">Фото</a></li>
-										<li><a href="/zayavka">Отправить заявку на соревнования</a></li>
+										<li><a href="{% url "albom_foto"%}">Фото</a></li>
+										<li><a href="{% url "zayavkaGet"%}">Отправить заявку на соревнования</a></li>
 									</ul>
 								</li>
 								
@@ -121,12 +122,15 @@
 								</li>
 					<li><a href="/antiDop">Антидопинг</a></li>
 								<li><a href="/contacts">Контакты</a></li>
+								{% if title in "Main" %}
 								<li>
 									<form class="d-flex" role="search" action="{% url "search" %}" method="get">
 									<input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Search" name="q">
 									<button class="bn btn-otline-success text-whie type="submit">Поиск</button>
 									</form>
 								</li>
+								{% endif %}
+							
 							</ul>
 						</nav>
 
@@ -354,7 +358,37 @@
 			<script src="{% static "/js/intense.js" %}"></script>
 			<script src="{% static "/js/bootstrap.js" %}"></script>
 			<script src="{% static "/js/modal.js" %}"></script>
+			<script src="{% static "/swipebox-master/lib/jquery-3.5.1.min.js" %}"></script>
+            <script src="{% static "/swipebox-master/src/js/jquery.swipebox.js "%}"></script>
 			
+			
+			<script type="text/javascript">
+				(function ($) {
+				   $('.swipebox').swipebox();
+		   
+			   })(jQuery);
+		   </script>
+
+
+
+			<script type="text/javascript">
+				var rect = document.querySelectorAll(".randomImg");
+				
+			   rect.forEach(item=>item.addEventListener("click", function () { 
+					var SrcItem =event.target.getAttribute('src');
+				  // alert(SrcItem);
+				   //document.write('<img src='+SrcItem+' width="200" height="200">')
+				   //var SrcItem =event.target;
+				   //Intense(SrcItem);
+			   
+			   }));
+			   //swipebox(rect);
+			   
+			   </script>
+
+		</body>
+		</html>
+	
 			  
 	
 			
@@ -560,24 +594,12 @@
 			
 					}
 			
-			
-			
-			
 				}
-			
-			
-			
+						
 			</script>
 			
 
 
-			
-
-
-
-
-</body>
-</html>
 
 
 

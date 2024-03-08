@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.db.models.signals import pre_delete
 from django.dispatch.dispatcher import receiver
+from PIL import Image
 CHOICES = (
         ('admin', 'admin'),
         ('prezident', 'prezident'),
@@ -20,6 +21,17 @@ class User(AbstractUser):
     tel=models.CharField(max_length=20,verbose_name="Телефон",blank=True,null=True)
     status=models.CharField(choices=CHOICES,verbose_name="Статус",blank=True,null=True,default='free')
     status_in_Feder=models.CharField(choices=CHOICES_Fed,verbose_name="Член Федерации?",blank=True,null=True)
+    def save(self):
+        super().save()  # saving image first
+        try:
+            img = Image.open(self.image.path) # Open image using self
+
+            if img.height > 1200 or img.width > 1200:
+                new_img = (1200, 700)
+                img.thumbnail(new_img)
+                img.save(self.image.path)  # saving image at the same path
+        except():
+            print("Ошибка")
 class Meta: 
         db_table = 'пользователь'
         verbose_name = 'Пользователь'  

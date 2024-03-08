@@ -107,7 +107,7 @@
 									<a href="#">Соревнования</a>
 									<ul>
 										<li><a href="/sorev/calendar">Календарь соревнований</a></li>
-										<li><a href="/sorev/protocol">Протоколы</a></li>
+										<li><a href="{% url "protocol"%}">Протоколы</a></li>
 										<li><a href="{% url "albom_foto"%}">Фото</a></li>
 										<li><a href="{% url "zayavkaGet"%}">Отправить заявку на соревнования</a></li>
 									</ul>
@@ -120,7 +120,7 @@
 										<li><a href="{% url "norm"%}">Нормативы</a></li>
 									</ul>
 								</li>
-					<li><a href="/antiDop">Антидопинг</a></li>
+					<li><a href="{% url "anti"%}">Антидопинг</a></li>
 								<li><a href="/contacts">Контакты</a></li>
 								{% if title in "Main" %}
 								<li>

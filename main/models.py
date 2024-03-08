@@ -120,6 +120,33 @@ class Doc(models.Model):
     def __str__(self):
         return self.title
 
+class Polog(models.Model):
+    docpath = models.FileField(upload_to="doc/polog/")
+    title = models.CharField(max_length=100, verbose_name="Заголовок")
+
+    class Meta:
+        db_table = "polog"
+        verbose_name = "Положение"
+        verbose_name_plural = "Положение"
+
+    def __str__(self):
+        return self.title
+    
+class Protocol(models.Model):
+    docpath = models.FileField(upload_to="doc/protocol/")
+    title = models.CharField(max_length=100, verbose_name="Заголовок")
+
+    class Meta:
+        db_table = "protocol"
+        verbose_name = "Протокол"
+        verbose_name_plural = "Протокол"
+
+    def __str__(self):
+        return self.title
+
+
+
+
 
 class Table_Norm(models.Model):
     title = models.CharField(max_length=100, verbose_name="Нормативы")

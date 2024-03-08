@@ -25,6 +25,7 @@ import debug_toolbar
 document_patterns=[
     path('document', views.document,name="doc"),
     path('pologeniya', views.pologeniya,name="polog"),
+    path('protocol', views.protocol,name="protocol"),
     path('normativ', views.normativ,name="norm"),
 ]
 
@@ -55,6 +56,7 @@ urlpatterns = [
     path("sorev/", include(sorev_patterns)),
     path("sportsmens/", include(sportsmens_patterns)),
     path('ckeditor/', include('ckeditor_uploader.urls')),
+    path("anti/", views.anti,name='anti'),
 ]
 
 if DEBUG:
@@ -65,43 +67,3 @@ if DEBUG:
 if DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-'''
-sport_patterns=[
-    path('autorize', views.autorize),
-    path('federMember', views.federMember),
-    path('record', views.record),
-    path('create_sport', views.create_sport),
-    path('create_sport_post', views.create_sport_post),
-    path("edit_sport/<int:id>/", views.edit_sport),
-    path("delete_sport/<int:id>/", views.delete_sport),
-]
-
-sorev_patterns=[
-    path('calendar', views.calendar),
-    path('protocol', views.protocol),
-    path('foto', views.foto),
-    path('zayavka', views.zayavka),
-]
-
-document_patterns=[
-    path('document', views.document),
-    path('pologeniya', views.pologeniya),
-    path('normativ', views.normativ),
-]
-
-urlpatterns = [
-     path("", views.index,name='index'),
-   
-     path("set", views.set),
-     path("sportsmens/", include(sport_patterns)),
-     path("sorev/", include(sorev_patterns)),
-     path("documents/", include(document_patterns)),
-     path("antiDop", views.antiDop),
-     path("contacts", views.contacts),
-     path("zayavka",views.zayavkaGet),
-     path("zayavkaPost",views.zayavkaPost),
-     path("admin",views.admin),
-     path("test/",views.test)
-     
-]
-'''

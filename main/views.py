@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
-from .models import New, Doc, Table_Norm, Table_Cat,Calendar,Table_Record,Table_Cat_Record,Foto
+from .models import New, Doc, Table_Norm, Table_Cat,Calendar,Table_Record,Table_Cat_Record,Foto,Polog,Protocol
 from users.models import User
 from django.core.paginator import Paginator
 from fprz.utils import q_search
@@ -68,10 +68,15 @@ def document(request):
 
 
 def pologeniya(request):
-    # sportsmen=Sportsmen.objects.all()
-    # return render(request,"index.html",context={"sportsmen":sportsmen})
-    context = {"title": "Положения", "content": "qeerqwe"}
+    doc = Polog.objects.all()
+    context = {"title": "Положения", "doc": doc}
     return render(request, "pologeniya.html", context)
+
+
+def protocol(request):
+    doc = Protocol.objects.all()
+    context = {"title": "Протоколы", "doc": doc}
+    return render(request, "protocol.html", context)
 
 
 def normativ(request):
@@ -140,3 +145,8 @@ def albom_foto(request):
         return render(request, "albom_foto.html", context)
     else:
         return render(request, "albom_foto.html")
+    
+
+def anti(request):
+  
+        return render(request, "anti.html")

@@ -42,8 +42,8 @@ INSTALLED_APPS = [
     'users',
     "debug_toolbar",
     'django_cleanup.apps.CleanupConfig',
-     'ckeditor',
-     'ckeditor_uploader',
+    'ckeditor',
+    'ckeditor_uploader',
    
 ]
 

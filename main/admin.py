@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib import admin
-from main.models import New,Doc,Table_Norm,Table_Cat,Calendar,Table_Cat_Record,Table_Record,Foto
+from main.models import New,Doc,Table_Norm,Table_Cat,Calendar,Table_Cat_Record,Table_Record,Foto,Polog,Protocol
 from django.utils.safestring import mark_safe
 from ckeditor.widgets import CKEditorWidget
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
@@ -33,7 +33,7 @@ class FotoAdmin(admin.ModelAdmin):
 class NewAdmin(admin.ModelAdmin):
     form=NewAdminForm
 
-admin.site.register(Doc)
+
 admin.site.register(Table_Norm)
 admin.site.register(Table_Cat)
 admin.site.register(Calendar)
@@ -41,7 +41,9 @@ admin.site.register(Table_Record)
 admin.site.register(Table_Cat_Record)
 
 
-
+admin.site.register(Doc)
+admin.site.register(Polog)
+admin.site.register(Protocol)
 
 
 

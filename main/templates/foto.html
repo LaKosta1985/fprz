@@ -1,0 +1,41 @@
+
+{% extends 'base.html' %}
+{% block title %}
+  {{ title }}
+{% endblock %}
+{% block content %}
+  
+  <div class="container">
+    <div id="contentFotoView">
+		{% for i  in  page %}
+		<a rel="gallery-1" href="{{MEDIA_URL}}/load/img/{{albom.title}}/big/{{i}}" class="swipebox">
+			<img src="{{MEDIA_URL}}/load/img/{{albom.title}}/big/{{i}}"  alt="..."  height="100"/>
+		</a>
+ 		{% endfor %}
+    </div>
+</div>
+
+
+<nav aria-label="Page navigation example">
+	<ul class="pagination">
+	  <li class="page-item {% if not page.has_previous %}disabled{% endif %}" >
+	  <a class="page-link" href="{% if page.has_previous %}?page={{page.previous_page_number}}"{% else %}
+	  #
+	  {% endif %}">Назад</a></li>
+	  
+	  {% for p in  page.paginator.page_range %}
+	  {% if p >= page.number|add:-2 and p <= page.number|add:2 %}
+	  <li class="page-item {% if page.number == p %}active{% endif %}">
+		<a class="page-link" href="?page={{p}}">{{p}}</a>
+	  </li>
+	  {% endif %}
+	  {% endfor %}
+  
+	  <li class="page-item {% if not page.has_next %}disabled{% endif %}" >
+		<a class="page-link" href="{% if page.has_next %}?page={{page.next_page_number}}"{% else %}
+		#
+		{% endif %}">Вперед</a></li>
+  
+	</ul>
+  </nav>
+{% endblock %}

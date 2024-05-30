@@ -4,10 +4,13 @@ from django.contrib import auth,messages
 from django.db.models import Prefetch
 from django.shortcuts import redirect, render
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
-from django.urls import reverse
-
-from users.forms import ProfileForm, UserLoginForm, UserRegistrationForm
-
+from django.urls import reverse, reverse_lazy
+from PIL import Image
+from users.forms import *
+from django.views.generic import ListView,DetailView,CreateView
+from fprz.settings import FROM_EMAIL_SERVER
+from django.template.loader import render_to_string
+from django.core.mail import EmailMultiAlternatives
 
 def registration(request):
     if request.method == 'POST':
@@ -15,13 +18,9 @@ def registration(request):
         if form.is_valid():
             form.save()
 
-           # session_key = request.session.session_key
-
             user = form.instance
             auth.login(request, user)
 
-            #if session_key:
-                #Cart.objects.filter(session_key=session_key).update(user=user)
             messages.success(request, f"{user.username}, Вы успешно зарегистрированы и вошли в аккаунт")
             return HttpResponseRedirect(reverse('index'))
     else:
@@ -33,8 +32,7 @@ def registration(request):
     }
     return render(request, 'registration.html', context)
 
- 
-   
+
 
 def login(request):
     if request.method == 'POST':
@@ -42,22 +40,22 @@ def login(request):
         if form.is_valid():
             username = request.POST['username']
             password = request.POST['password']
+           
             user = auth.authenticate(username=username, password=password)
 
-            #session_key = request.session.session_key
-
+           
             if user:
-                auth.login(request, user)
+                
+                auth.login(request,user)
+             
                 messages.success(request, f"{username}, Вы вошли в аккаунт")
 
-                #if session_key:
-                    #Cart.objects.filter(session_key=session_key).update(user=user)
 
                 redirect_page = request.POST.get('next', None)
                 if redirect_page and redirect_page != reverse('user:logout'):
                     return HttpResponseRedirect(request.POST.get('next'))
                     
-                return HttpResponseRedirect(reverse('index'))
+                return HttpResponseRedirect(reverse('users:profile'))
     else:
         form = UserLoginForm()
 
@@ -76,6 +74,15 @@ def profile(request):
         form = ProfileForm(data=request.POST, instance=request.user, files=request.FILES)
         if form.is_valid():
             form.save()
+            if request.FILES:
+                filename = request.FILES['image'].name
+                print("filename")
+                print(filename)
+                img = Image.open("load/users/"+filename) # Open image using self
+                if img.height > 1200 or img.width > 1200:
+                    new_img = (1200, 700)
+                    img.thumbnail(new_img)
+                    img.save("load/users/"+filename)  # saving image at the same path
             messages.success(request, "Профайл успешно обновлен")
             return HttpResponseRedirect(reverse('users:profile'))
     else:
@@ -100,3 +107,27 @@ def logout(request):
     messages.success(request, f"{request.user.username}, Вы вышли из аккаунта")
     auth.logout(request)
     return redirect(reverse('index'))
+
+def sendMesToEmail(request): 
+   if request.method=='POST': 
+        form=SendPassToEmail(request.POST)
+        if form.is_valid():
+                try:
+                    mail=request.POST.get("email")
+                    user=User.objects.filter(email=mail)
+                    if user:
+                        for i in user:
+                            email_body=i.password
+                        print(email_body)
+                        if mail:
+                             msg=EmailMultiAlternatives(subject="Пароль профиля сайта РФП(fprz.ru)",from_email=FROM_EMAIL_SERVER,to=[mail,])
+                             msg.attach_alternative(email_body,"text/html")
+                             msg.send()
+                             return render(request, "login.html",{'form':form,'title':"Пароль",'data':mail}) 
+                    else:
+                        form.add_error(None,"Такой Email не зарегистрирован")      
+                except:
+                    form.add_error(None,"Ошибка при отправлении(") 
+   else:
+       form=SendPassToEmail()       
+   return render(request, "sendMesToEmail.html",{'form':form,'title':"Пароль"}) 

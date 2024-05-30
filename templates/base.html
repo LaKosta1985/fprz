@@ -109,7 +109,7 @@
 										<li><a href="/sorev/calendar">Календарь соревнований</a></li>
 										<li><a href="{% url "protocol"%}">Протоколы</a></li>
 										<li><a href="{% url "albom_foto"%}">Фото</a></li>
-										<li><a href="{% url "zayavkaGet"%}">Отправить заявку на соревнования</a></li>
+										<li><a href="{% url "zayavka"%}">Отправить заявку на соревнования</a></li>
 									</ul>
 								</li>
 								
@@ -140,11 +140,11 @@
            		    <div id="view">
 
 							{% include "notification.html" %}
-							{% block content%}
-							{% endblock content %}
+							
+								{% block content%}
+								{% endblock content %}
+							
 
-
-						
 					</div>
 			
 			
@@ -157,7 +157,7 @@
 						<div class="row">
 
 							
-								<section class="col-4 col-12-mobile">
+								<section {% if random_foto %} class="col-4 col-12-mobile" {% else %} class="col-6 col-12-mobile" {% endif %} >
 									<header>
 										<p><i class="fa fa-list-alt"></i></p>
 									</header>
@@ -165,7 +165,7 @@
 													<li>
 											<article class="post stub">
 												<header>
-													<h3><a href="/Info/#view">Информация</a></h3>
+													<h3><a href="/">Информация</a></h3>
 												</header>
 												
 											</article>
@@ -173,7 +173,7 @@
 							<li>
 								<article class="post stub">
 									<header>
-										<h3><a href="/Record/#view">Рекорды Рязанской области</a></h3>
+										<h3><a href="{% url "record"%}">Рекорды Рязанской области</a></h3>
 									</header>
 
 								</article>
@@ -181,7 +181,7 @@
 							<li>
 								<article class="post stub">
 									<header>
-										<h3><a href="/Norm/#view">Нормативы Федерации</a></h3>
+										<h3><a href="{% url "norm"%}">Нормативы Федерации</a></h3>
 									</header>
 
 								</article>
@@ -189,7 +189,7 @@
 											<li>
 											<article class="post stub">
 												<header>
-													<h3><a href="/Sportsmen/#view">Члены Федерации</a></h3>
+													<h3><a href="{% url "feder_member"%}">Члены Федерации</a></h3>
 												</header>
 												
 											</article>
@@ -197,7 +197,7 @@
 											<li>
 											<article class="post stub">
 												<header>
-													<h3><a href="/Protocol/#view">Протоколы</a></h3>
+													<h3><a href="{% url "protocol"%}">Протоколы</a></h3>
 												</header>
 												
 											</article>
@@ -205,7 +205,7 @@
 										<li>
 											<article class="post stub">
 												<header>
-													<h3><a href="/foto/#view">Фотографии</a></h3>
+													<h3><a href="{% url "albom_foto"%}">Фотографии</a></h3>
 												</header>
 												
 											</article>
@@ -215,7 +215,7 @@
 								</section>
 
 							<!-- Posts -->
-								<section class="col-4 col-12-mobile">
+								<section {% if random_foto %} class="col-4 col-12-mobile" {% else %} class="col-6 col-12-mobile" {% endif %}>
 									<header>
 										<p><i class="fa fa-list-alt"></i></p>
 										
@@ -226,7 +226,7 @@
 										<li>
 											<article class="post stub">
 												<header>
-													<h3><a href="/Pologeniya/#view">Положения</a></h3>
+													<h3><a href="{% url "polog"%}">Положения</a></h3>
 												</header>
 												
 											</article>
@@ -235,7 +235,7 @@
 										<li>
 											<article class="post stub">
 												<header>
-													<h3><a href="/Doc/#view">Документы Федерации</a></h3>
+													<h3><a href="{% url "doc"%}">Документы Федерации</a></h3>
 												</header>
 												
 											</article>
@@ -243,7 +243,7 @@
 											<li>
 											<article class="post stub">
 												<header>
-													<h3><a href="/Calendar/#view">Календарь соревнований</a></h3>
+													<h3><a href="{% url "calendar"%}">Календарь соревнований</a></h3>
 												</header>
 												
 											</article>
@@ -251,7 +251,7 @@
 							<li>
 								<article class="post stub">
 									<header>
-										<h3><a href="/contact/#view">Контакты</a></h3>
+										<h3><a href="{% url "contacts"%}">Контакты</a></h3>
 									</header>
 
 								</article>
@@ -259,7 +259,7 @@
 											<li>
 											<article class="post stub">
 												<header>
-										<h3><a href="/Zayavka/#view">Отправить заявку</a></h3>
+										<h3><a href="{% url "zayavka"%}">Отправить заявку</a></h3>
 												</header>
 												
 											</article>
@@ -267,7 +267,7 @@
 							<li>
 								<article class="post stub">
 									<header>
-										<h3><a href="/Anti/#view">Антидопинг</a></h3>
+										<h3><a href="{% url "anti"%}">Антидопинг</a></h3>
 									</header>
 
 								</article>
@@ -280,33 +280,23 @@
 
 
 
+{% if  random_foto%}
+<section class="col-4 col-12-mobile">
+	<header>
 
-								<section class="col-4 col-12-mobile">
-									<header>
-				
-										<p><i class=" fa fa-camera"></i></p>
-									</header>
-									<div class="row gtr-25">
-										<div class="col-6">
-											<a href="~/images/randomImg/@System.IO.Path.GetFileName(files[r1])" class="image fit swipebox"><img class="randomImg" src="~/images/randomImg/@System.IO.Path.GetFileName(files[r1])" alt="" loading="lazy"/></a>
-										</div>
-										<div class="col-6">
-								<a href="~/images/randomImg/@System.IO.Path.GetFileName(files[r2])" class="image fit swipebox"><img class="randomImg" src="/main/images/randomImg/@System.IO.Path.GetFileName(files[r2])" alt="" loading="lazy" /></a>
-										</div>
-										<div class="col-6">
-								<a href="~/images/randomImg/@System.IO.Path.GetFileName(files[r3])" class="image fit swipebox"><img class="randomImg" src="/main/images/randomImg/@System.IO.Path.GetFileName(files[r3])" alt="" loading="lazy" /></a>
-										</div>
-										<div class="col-6">
-								<a href="~/images/randomImg/@System.IO.Path.GetFileName(files[r4])" class="image fit swipebox"><img class="randomImg" src="/main/images/randomImg/@System.IO.Path.GetFileName(files[r4])" alt="" loading="lazy" /></a>
-										</div>
-										<div class="col-6">
-								<a href="~/images/randomImg/@System.IO.Path.GetFileName(files[r5])" class="image fit swipebox"><img class="randomImg" src="/main/images/randomImg/@System.IO.Path.GetFileName(files[r5])" alt="" loading="lazy" /></a>
-										</div>
-										<div class="col-6">
-								<a href="~/images/randomImg/@System.IO.Path.GetFileName(files[r6])" class="image fit swipebox"><img class="randomImg" src="/main/images/randomImg/@System.IO.Path.GetFileName(files[r6])" alt="" loading="lazy" /></a>
-										</div>
-									</div>
-								</section>
+		<p><i class=" fa fa-camera"></i></p>
+	</header>
+	<div class="row gtr-25">
+		
+		{% for i  in  random_foto %}
+		<div class="col-6">
+			<a href="{{MEDIA_URL}}/load/img/randomImg/{{i}}" class="image fit swipebox"><img class="randomImg" src="{{MEDIA_URL}}/load/img/randomImg/{{i}}" alt="" loading="lazy"/></a>
+		</div>
+		{% endfor %}
+	</div>
+</section>
+{% endif %}
+								
 
 						</div>
 						<hr />
@@ -348,6 +338,7 @@
 
 
   			<script src="{% static "/js/jquery.min.js" %}"></script>
+			<script src="{% static "/js/htmx.min.js" %}"></script>
 			<script src="{% static "/js/jquery.dropotron.min.js" %}"></script>
 			<script src="{% static "/js/jquery.scrolly.min.js" %}"></script>
 			<script src="{% static "/js/jquery.scrollex.min.js" %}"></script>
@@ -598,9 +589,4 @@
 						
 			</script>
 			
-
-
-
-
-
 

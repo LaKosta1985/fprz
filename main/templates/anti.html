@@ -3,11 +3,97 @@
   {{ title }}
 {% endblock %}
 {% block content %}
-  {% load static %}
- 
-     
-       
-антидопинг
-    
-   
-{% endblock %}
+{% load static %}
+
+  <div class="container ">
+    <div class="row">
+         <div class="col">
+          {% if  object_list%}
+  {% for i in object_list%}
+  <div class="lenta">
+      <div class="card" >
+        {% if  i.video %}
+        <iframe src="{{i.video}}" style=" width: 100%; border: none " height="300" src="" frameborder="0" allowfullscreen>
+        </iframe>
+        {% else %}
+        <img src="{{i.img_Head.url }}" class="card-img-top" alt="...">
+        {% endif %}
+        <div class="card-body">
+          <h5 class="card-title">
+            {% autoescape off %}
+            {% if i.headline %}
+            {{i.headline}}
+            {% else %}
+            <div class="view_count" id="{{i.id}}" >{{i.title}}</div>
+            {% endif %}
+            {% endautoescape %}
+          </h5>
+          {% if  i.content and i.content|length > 300 %}
+          <div class="content_block hide">
+          {% else %}
+          <div>
+          {% endif %}
+          <p class="card-text">
+            {% autoescape off %}
+            {% if i.bodyline %}
+            {{i.bodyline}}
+            {% else %}
+            {{i.content}}
+            {% endif %}
+            {% endautoescape %}
+          </p>
+        </div>
+        {% if  i.content and i.content|length > 300 %}
+        <a class="content_toggle" href="#">Подробнее</a>
+        {% endif %}
+      </div>
+      
+      <div class="datecounter row">
+        <div class="col card-text"><small class="text-muted">{{i.date}}</small></div>
+      </div>
+      </div>
+    </div>
+      <br>
+  {% endfor %}
+
+  {% else %}
+        <h1>Здесь пока пусто.</h1>
+        {% endif %}
+    <br> 
+      </div>
+    </div>
+  </div>
+  
+
+  
+  {% if  paginator and object_list %}
+  
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %}" >
+      <a class="page-link" href="{% if page_obj.has_previous %}?page={{page_obj.previous_page_number}}"{% else %}
+      #
+      {% endif %}">Назад</a></li>
+      
+      {% for p in  paginator.page_range %}
+      {% if p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
+      <li class="page-item {% if page_obj.number == p %}active{% endif %}">
+      <a class="page-link" href="?page={{p}}&q={{query}}">{{p}}</a>
+      </li>
+      {% endif %}
+      {% endfor %}
+  
+      <li class="page-item {% if not page_obj.has_next %}disabled{% endif %}" >
+      <a class="page-link" href="{% if page_obj.has_next %}?page={{page_obj.next_page_number}}"{% else %}
+      #
+      {% endif %}">Вперед</a></li>
+  
+    </ul>
+  </nav>
+  {% endif %}
+  
+  {% endblock content %}
+  
+
+
+

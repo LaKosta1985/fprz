@@ -21,8 +21,12 @@
             <th>Заявка</th>
           </tr>
           {% for c in calendar %}
-              <tr>
-                <td>положение</td>
+                <tr>
+                {% if c.polog %}
+                <td><a class="page-link" href="{{c.zayav}}">Положение</a></td>
+                {% else %}
+                <td></td>
+                {% endif %}
                 <td>{{c.status}}</td>
                 <td>{{c.dopusk}}</td>
                 <td>{{c.name}}</td>
@@ -36,12 +40,14 @@
                 {% if c.zayav %}
                 <td><a class="page-link" href="{{c.zayav}}">Подать заявку</a></td>
                 {% else %}
-                <td>ссылка на бланк заявки</td>
+                <td></td>
                 {% endif %}
                
               </tr>
           {% endfor %}
         </table>
+        {% else %}
+<h1>Здесь пока пусто.</h1>
     {% endif %}
   </div>
   <div>

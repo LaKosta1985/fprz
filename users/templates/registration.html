@@ -32,6 +32,16 @@
                                 {% endif %}
                         </div>
                         <div class="col-md-6 mb-3">
+                            <label for="id_therd_name" class="form-label">Отчество*</label>
+                            <input type="text" class="form-control" id="id_therd_name"
+                                value="{% if form.therd_name.value %}{{ form.therd_name.value }}{% endif %}"
+                                name="therd_name"
+                                placeholder="Введите ваше отчество" required>
+                                {% if form.therd_name.errors %}
+                                <div class="alert alert-danger alert-dismissible fade show">{{form.therd_name.errors}}</div>
+                                {% endif %}
+                        </div>
+                        <div class="col-md-6 mb-3">
                             <label for="id_username" class="form-label">Имя пользователя*</label>
                             <input type="text" class="form-control" id="id_username"
                                 value="{% if form.username.value %}{{ form.username.value }}{% endif %}"

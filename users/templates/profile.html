@@ -54,6 +54,17 @@
                                     {% endif %}
                             </div>
                             <div class="col-md-12 mb-3">
+                                <label for="id_therd_name" class="form-label">Отчество</label>
+                                <input type="text" class="form-control" id="id_therd_name"
+                                    name="therd_name"
+                                    placeholder="Введите ваше отчество"
+                                    value="{{ form.therd_name.value }}"
+                                    required>
+                                    {% if form.therd_name.errors %}
+                                    <div class="alert alert-danger alert-dismissible fade show">{{form.therd_name.errors}}</div>
+                                    {% endif %}
+                            </div>
+                            <div class="col-md-12 mb-3">
                                 <label for="id_username" class="form-label">Имя пользователя*</label>
                                 <input type="text" class="form-control" id="id_username"
                                     name="username"
@@ -86,6 +97,86 @@
                                     <div class="alert alert-danger alert-dismissible fade show">{{form.tel.errors}}</div>
                                     {% endif %}
                             </div>
+
+                            <div class="col-md-12 mb-3">
+                                <label for="id_bench" class="form-label">Присед</label>
+                                <input type="text" class="form-control" id="id_bench"
+                                    name="bench"
+                                    placeholder="Введите ваш максимальный, соревновательный присед"
+                                    value="{{ form.bench.value }}"
+                                    >
+                                    {% if form.bench.errors %}
+                                    <div class="alert alert-danger alert-dismissible fade show">{{form.bench.errors}}</div>
+                                    {% endif %}
+                            </div>
+
+                            <div class="col-md-12 mb-3">
+                                <label for="id_press" class="form-label">Жим</label>
+                                <input type="text" class="form-control" id="id_press"
+                                    name="press"
+                                    placeholder="Введите ваш лучший, соревновательный жим"
+                                    value="{{ form.press.value }}"
+                                    >
+                                    {% if form.press.errors %}
+                                    <div class="alert alert-danger alert-dismissible fade show">{{form.press.errors}}</div>
+                                    {% endif %}
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="id_d_lift" class="form-label">Тяга</label>
+                                <input type="text" class="form-control" id="id_d_lift"
+                                    name="d_lift"
+                                    placeholder="Введите вашу лучшую,соревновательную тягу"
+                                    value="{{ form.d_lift.value }}"
+                                    >
+                                    {% if form.d_lift.errors %}
+                                    <div class="alert alert-danger alert-dismissible fade show">{{form.d_lift.errors}}</div>
+                                    {% endif %}
+                            </div>
+
+                            <div class="col-md-12 mb-3">
+                                <label for="id_sum" class="form-label">Сумма</label>
+                                <input type="text" class="form-control" id="id_sum"
+                                    name="sum"
+                                    placeholder="Введите вашу лучшую, соревновательную сумму"
+                                    value="{{ form.sum.value }}"
+                                    >
+                                    {% if form.sum.errors %}
+                                    <div class="alert alert-danger alert-dismissible fade show">{{form.sum.errors}}</div>
+                                    {% endif %}
+                            </div>
+
+                            <div class="col-md-12 mb-3">
+                                <label for="id_kat" class="form-label">Категория</label>
+                                    {{form.kat}}
+                                    {% if form.kat.errors %}
+                                    <div class="alert alert-danger alert-dismissible fade show">{{form.kat.errors}}</div>
+                                    {% endif %}
+                            </div>
+
+                            <div class="col-md-12 mb-3">
+                                <label for="id_raz" class="form-label">Разряд</label>
+                                    {{form.raz}}
+                                    {% if form.raz.errors %}
+                                    <div class="alert alert-danger alert-dismissible fade show">{{form.raz.errors}}</div>
+                                    {% endif %}
+                            </div>
+
+                            <div class="col-md-12 mb-3">
+                                <label for="id_date" class="form-label">Дата рождения</label>
+                                    {{form.date}}
+                                    {% if form.date.errors %}
+                                    <div class="alert alert-danger alert-dismissible fade show">{{form.date.errors}}</div>
+                                    {% endif %}
+                            </div>
+
+                            <div class="col-md-12 mb-3">
+                                <label for="id_from_self" class="form-label">О себе</label>
+                                    {{form.from_self}}
+                                    {% if form.from_self.errors %}
+                                    <div class="alert alert-danger alert-dismissible fade show">{{form.from_self.errors}}</div>
+                                    {% endif %}
+                            </div>
+
                         </div>
                         <input type="hidden" class="form-control" id="id_status"
                         name="status"

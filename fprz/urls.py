@@ -1,62 +1,50 @@
-"""
-URL configuration for fprz project.
 
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.0/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
 from django.urls import path,include
-from main import views
+from main.views import *
 from django.conf import settings
 from django.conf.urls.static import static
 from fprz.settings import DEBUG
-import debug_toolbar
+from django.views.decorators.cache import cache_page
+
 
 document_patterns=[
-    path('document', views.document,name="doc"),
-    path('pologeniya', views.pologeniya,name="polog"),
-    path('protocol', views.protocol,name="protocol"),
-    path('normativ', views.normativ,name="norm"),
+    path('document', cache_page(60*3)(Doc_fprz.as_view()),name="doc"),
+    path('pologeniya', Pologeniya_fprz.as_view(),name="polog"),
+    path('protocol', protocol,name="protocol"),
+    path('normativ', normativ,name="norm"),
 ]
 
 sorev_patterns=[
-    path('calendar', views.calendar,name="calendar"),
-    path("zayavka",views.zayavkaGet,name='zayavkaGet'),
-    path("zayavkaPost",views.zayavkaPost,name='zayavkaPost'),
-    #path('protocol', views.protocol,name="protocol"),
-    path('albom_foto', views.albom_foto,name="albom_foto"),
+    path('calendar', calendar,name="calendar"),
+    path("zayavka",zayavka,name='zayavka'),
+    #path("mailPost",mailPost,name='mailPost'),
+    path('albom_foto',albom_foto,name="albom_foto"),
+    path('foto/<slug:slug_foto>',foto,name="foto")
     #path('zayvka', views.zayvka,name="zayvka"),
 ]
 
 sportsmens_patterns=[
-    path('feder_member', views.feder_member,name="feder_member"),
-    path('calendar', views.calendar,name="calendar"),
-    path('record', views.record,name="record"),
+    path('feder_member', feder_member,name="feder_member"),
+    path('calendar', calendar,name="calendar"),
+    path('record', record,name="record"),
 ]
 
 urlpatterns = [
-    path("", views.index,name='index'),
+    path("", cache_page(3)(Main_fprz.as_view()),name='index'),
     path("documents/", include(document_patterns)),
     path('admin/', admin.site.urls,name='admin'),
-    path('search/', views.index,name='search'),
+    #path('search/', Main_fprz,name='search'),
     path('user/', include(('users.urls','users'), namespace='users')),
-    path("like/", views.like,name='like'),
-    path("like_/", views.like_,name='like_'),
-    path("contacts",views.contacts,name='contacts'),
+    path("like/", like,name='like'),
+    path("like_/", like_,name='like_'),
+    path("contacts",contacts,name='contacts'),
     path("sorev/", include(sorev_patterns)),
     path("sportsmens/", include(sportsmens_patterns)),
     path('ckeditor/', include('ckeditor_uploader.urls')),
-    path("anti/", views.anti,name='anti'),
+    path("anti/", Anti_fprz.as_view(),name='anti'),
+    path("captcha/", include('captcha.urls')),
+    path('mailPost/<slug:slug_status>',mailPost,name='mailPost'),
 ]
 
 if DEBUG:

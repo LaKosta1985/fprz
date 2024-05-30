@@ -10,7 +10,7 @@
             {% for a in albom %}
             
             <div class="col">
-              <div class="card" style="max-width: 10rem">
+              <div class="card" style="max-width: 15rem">
                 {% if a.image %}
                   <img src="{{ a.image.url }}"  alt="..." />
                 {% else %}
@@ -19,12 +19,15 @@
                 <div class="card-body">
                   <h5 class="card-title">{{ a.title }}</h5>
                   <p class="card-text">{{ a.name }}</p>
-                  <a class="btn btn-secondary" href="{{a.image.url}}">Смотреть</a>
+                  <a class="btn btn-secondary" href="/sorev/foto/{{a.slug}}">Смотреть</a>
+                  
                 </div>
               </div>
             </div>
            
             {% endfor %}
+            {% else %}
+<h1>Здесь пока пусто.</h1>
           {% endif %}
     
     </div>

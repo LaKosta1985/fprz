@@ -16,16 +16,17 @@
 </section>
 <div class="container ">
   <div class="row">
-    <div class="col">
-
-
-      
-
-
-{% for i in page %}
-
+       <div class="col">
+{% for i in object_list%}
+<div class="lenta">
     <div class="card" >
+      {% if  i.video %}
+      <iframe src="{{i.video}}" style=" width: 100%; border: none " height="300" src="" frameborder="0" allowfullscreen>
+        
+      </iframe>
+      {% else %}
       <img src="{{i.img_Head.url }}" class="card-img-top" alt="...">
+      {% endif %}
       <div class="card-body">
         <h5 class="card-title">
           {% autoescape off %}
@@ -37,7 +38,12 @@
           {% endif %}
           {% endautoescape %}
         </h5>
+        {% if  i.content and i.content|length > 300 %}
         <div class="content_block hide">
+        {% else %}
+        <div>
+        {% endif %}
+        
         <p class="card-text">
           {% autoescape off %}
           {% if i.bodyline %}
@@ -95,42 +101,22 @@
     </div>
    
     </div>
-  
+  </div>
     <br>
 {% endfor %}
   
+
+ 
   
-  <nav aria-label="Page navigation example">
-      <ul class="pagination">
-        <li class="page-item {% if not page.has_previous %}disabled{% endif %}" >
-        <a class="page-link" href="{% if page.has_previous %}?page={{page.previous_page_number}}"{% else %}
-        #
-        {% endif %}">Назад</a></li>
-        
-        {% for p in  page.paginator.page_range %}
-        {% if p >= page.number|add:-2 and p <= page.number|add:2 %}
-        <li class="page-item {% if page.number == p %}active{% endif %}">
-          <a class="page-link" href="?page={{p}}&q={{query}}">{{p}}</a>
-        </li>
-        {% endif %}
-        {% endfor %}
-
-        <li class="page-item {% if not page.has_next %}disabled{% endif %}" >
-          <a class="page-link" href="{% if page.has_next %}?page={{page.next_page_number}}"{% else %}
-          #
-          {% endif %}">Вперед</a></li>
-
-      </ul>
-  </nav>
   <br>
  
-
+      
     </div>
   </div>
 </div>
 
 
-<a href="{% url "zayavkaGet"%}">
+<a href="{% url "zayavka"%}">
   <div class="email-bt" data-bs-toggle="modal" >
      <div class="text-call">
         <span>Отправить<br>заявку</span>
@@ -138,8 +124,37 @@
   </div>
   </a>
 
-{% endblock content %}
 
+
+
+
+  {% if  paginator and object_list %}
+
+<nav aria-label="Page navigation example">
+	<ul class="pagination">
+	  <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %}" >
+	  <a class="page-link" href="{% if page_obj.has_previous %}?page={{page_obj.previous_page_number}}"{% else %}
+	  #
+	  {% endif %}">Назад</a></li>
+	  
+	  {% for p in  paginator.page_range %}
+	  {% if p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
+	  <li class="page-item {% if page_obj.number == p %}active{% endif %}">
+		<a class="page-link" href="?page={{p}}&q={{query}}">{{p}}</a>
+	  </li>
+	  {% endif %}
+	  {% endfor %}
+
+	  <li class="page-item {% if not page_obj.has_next %}disabled{% endif %}" >
+		<a class="page-link" href="{% if page_obj.has_next %}?page={{page_obj.next_page_number}}"{% else %}
+		#
+		{% endif %}">Вперед</a></li>
+
+	</ul>
+</nav>
+{% endif %}
+
+{% endblock content %}
 
 
 

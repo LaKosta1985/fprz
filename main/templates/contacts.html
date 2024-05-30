@@ -4,113 +4,52 @@
 {% endblock %}
 {% block content %}
   {% load static %}
-  <div class="container">
-    <div class="row ">
+  {% if users %}
+  <div class="container-fluid">
+    <div class="row justify-content-md-center">
       {% for a in users %}
-        {% if a.status == "prezident" %}
-        <div class="col">
-          <div class="card" style="width: 20rem">
-            {% if a.image %}
-            <img src="{{ a.image.url }}" class="card-img-top" alt="..." />
-            {% else %} 
-            <img src="{% static "load/users/no-photo.jpg" %}" class="card-img-top" alt="..." />
-            {% endif %}
-            
-            <div class="card-body">
-              <h5 class="card-title">Президент Федерации</h5>
-              <p class="card-text">{{ a.first_name }} {{ a.last_name}}</p>
-              <h5 class="card-title">Телефон президента</h5>
-              {% if a.tel == 'None' %}
-              <p class="card-text">-</p>
-              {% else %}
-              <p class="card-text">{{a.tel}}</p>
-              {% endif %}
-              
-              <h5 class="card-title">Почта президента</h5>
-              <p class="card-text">{{a.email}}</p>
-              <a href="#" class="btn btn-outline-secondary">Написать</a>
-            </div>
-          </div>
-        </div>
-        {% endif %}
-        
-        {% if a.status == "secret" %}
-        <div class="col">
-          <div class="card" style="width: 20rem">
+        <div class="col-md-auto">
+          <div class="card" style="width: 15rem">
             {% if a.image %}
             <img src="{{ a.image.url }}" class="card-img-top" alt="..." />
             {% else %} 
             <img src="{% static "load/users/no-photo.jpg" %}" class="card-img-top" alt="..." />
             {% endif %}
             <div class="card-body">
-              <h5 class="card-title">Секретарь сайта</h5>
-              <p class="card-text">{{ a.first_name }} {{ a.last_name}}</p>
-              <h5 class="card-title">Телефон секретаря</h5>
-              {% if a.tel == 'None' %}
-              <p class="card-text">-</p>
-              {% else %}
-              <p class="card-text">{{a.tel}}</p>
-              {% endif %}
-              <h5 class="card-title">Почта секретаря</h5>
-              <p class="card-text">{{a.email}}</p>
-              <a href="#" class="btn btn-outline-secondary">Написать</a>
-            </div>
-          </div>
-        </div>
-        {% endif %}
-
-
-        {% if a.status == "antidoping"%}
-        <div class="col">
-          <div class="card" style="width: 20rem">
-            {% if a.image %}
-            <img src="{{ a.image.url }}" class="card-img-top" alt="..." />
-            {% else %} 
-            <img src="{% static "load/users/no-photo.jpg" %}" class="card-img-top" alt="..." />
-            {% endif %}
-            <div class="card-body">
-              <h5 class="card-title">Ответственный за антидопинговую работу</h5>
+              <h5 class="card-title">{{a.status}}</h5>
               <p class="card-text">{{ a.first_name }} {{ a.last_name}}</p>
               <h5 class="card-title">Телефон</h5>
-              {% if a.tel == 'None' %}
-              <p class="card-text">-</p>
-              {% else %}
+              {% if a.tel %}
               <p class="card-text">{{a.tel}}</p>
+              {% else %}
+              <p class="card-text">-</p>
               {% endif %}
-              <h5 class="card-title">Почта</h5>
-              <p class="card-text">{{a.email}}</p>
-              <a href="#" class="btn btn-outline-secondary">Написать</a>
-            </div>
-          </div>
-        </div>
-        {% endif %}
 
-        {% if a.status == "admin" %}
-        <div class="col">
-          <div class="card" style="width: 20rem">
-            {% if a.image %}
-            <img src="{{ a.image.url }}" class="card-img-top" alt="..." />
-            {% else %} 
-            <img src="{% static "load/users/no-photo.jpg" %}" class="card-img-top" alt="..." />
-            {% endif %}
-            <div class="card-body">
-              <h5 class="card-title">Администратор сайта</h5>
-              <p class="card-text">{{ a.first_name }} {{ a.last_name}}</p>
-              <h5 class="card-title">Телефон администратора</h5>
-              {% if a.tel == 'None' %}
-              <p class="card-text">-</p>
-              {% else %}
-              <p class="card-text">{{a.tel}}</p>
-              {% endif %}
-              <h5 class="card-title">Почта администратора</h5>
+              <h5 class="card-title">Почта</h5>
+              {% if a.email %}
               <p class="card-text">{{a.email}}</p>
-              <a href="#" class="btn btn-outline-secondary">Написать</a>
+              {% else %}
+              <p class="card-text">-</p>
+              {% endif %}
+              <a type="button" class="btn btn-secondary" href="/mailPost/{{a.slug}}" value="adm">Написать</a>
+             
             </div>
           </div>
         </div>
-        {% endif %}
 
       {% endfor %}
     </div>
   </div>
-{% endblock %}
+  {% else %}
+  <h1>Здесь пока пусто.</h1>
+    {% endif %}
+  {% endblock content %}
+  {% if data.name %}
+  <script type="text/javascript" charset="utf-8">
+  alert("Спасибо- {{data.name}} -ваше письмо отправлено!");  
+  </script>
+{% endif %}
+
+
+
+

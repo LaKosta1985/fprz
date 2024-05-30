@@ -6,47 +6,31 @@
     <div class="row">
        
     <div class="sportsfpr62">
-        <h3>Заявка</h3>
+        <h3>Письмо {% if for_mes %} {{for_mes}} {% endif %} </h3>
     </div>
 
     <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded">
-
-        <form method="post" action="{% url "zayavka" %}" hx-post="{% url "zayavka" %}" hx-target="#page-wrapper" enctype="multipart/form-data" class="form">
+        <form method="post" action="{% url "users:sendMesToEmail" %}" enctype="multipart/form-data" class="form">
             {% csrf_token %}
             <div class="fields">
                 {{form.as_p}}
             </div>
             <br />
 
-
             <ul class="actions">
 
                 <li><input type="submit" value="Отправить" class="primary" /></li>
                 <li><input type="reset" value="Очистить" /></li>
                 
-
             </ul>
-
-            
        
-       
-        
         </form>
 
         </div>
 
-
     </div>
 
-</div>
-
-
-{% if data.name %}
-    <script type="text/javascript" charset="utf-8">
-    alert("Спасибо- {{data.name}} -ваша заявка отправлена!");  
-    </script>
-{% endif %}
- 
+</div> 
 
 
 {% endblock content %}

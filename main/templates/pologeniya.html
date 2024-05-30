@@ -3,18 +3,20 @@
 {% block content %}
 {% load static %}
 <div class="document">
- 
-      {% for a  in  doc %}
+  {% if  object_list %}
+      {% for a  in  object_list %}
       <div class="card" style="width: 12rem">
           <img src="{% static "/images/main.jpg" %}" class="card-img-top" alt="...">
           <div class="card-body">
             <p class="card-text">{{a.title}}</p>
-            <a href="#" class="btn btn-outline-secondary">Смотреть</a>
+            <a href="/load/{{a.docpath}}" class="btn btn-outline-secondary">Смотреть</a>
             
           </div>
         </div>
       {% endfor %}
-    
+  {% else %}
+      <h1>Здесь пока пусто.</h1>
+  {% endif %} 
 </div>
 
 

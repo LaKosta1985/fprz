@@ -41,9 +41,10 @@ INSTALLED_APPS = [
     'main',
     'users',
     "debug_toolbar",
-    'django_cleanup.apps.CleanupConfig',
     'ckeditor',
     'ckeditor_uploader',
+    'django_cleanup',
+    'captcha',
    
 ]
 
@@ -85,7 +86,7 @@ WSGI_APPLICATION = 'fprz.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'fprz',
+        'NAME': 'fprz1.1',
         'USER':'admin',
         'PASSWORD':'25111985admin',
         'HOST': 'localhost',
@@ -134,17 +135,80 @@ STATICFILES_DIRS=[BASE_DIR/ 'static']
 CKEDITOR_UPLOAD_PATH = "uploads/"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
+PHOTO_URL='load/img/'
+NEWS_URL='load/news/'
+ANTI_URL='load/anti/'
 MEDIA_URL ='/load/'
-MEDIA_ROOT = BASE_DIR / 'load'
+MEDIA_ROOT = BASE_DIR /'load'
 DJANGORESIZED_DEFAULT_SIZE = [1024, 768]
 DJANGORESIZED_DEFAULT_QUALITY = 75
 DJANGORESIZED_DEFAULT_KEEP_META = True
 DJANGORESIZED_DEFAULT_FORCE_FORMAT = 'JPEG'
 DJANGORESIZED_DEFAULT_FORMAT_EXTENSIONS = {'JPEG': ".jpg"}
 DJANGORESIZED_DEFAULT_NORMALIZE_ROTATION = True
-
-
+FROM_EMAIL_SERVER="fprz62@yandex.ru"
+EMAIL_ADRESS = {
+    "administrator": "xxxascent@rambler.ru",
+    "sekretetar": "xxxascent@rambler.ru",
+    "antidopingovaya-rabota": "xxxascent@rambler.ru",
+    "prezident": "xxxascent@rambler.ru",
+}
+CHOICES_сompetition = (
+    ("троеборье", "троеборье"),
+    ("жим", "жим"),
+)
+CHOICES_EKIP={"Экип":"Экипировка","Клас":"Классика"}
+CHOICES_RAZRAD={'б/р':'б/р','1':'1','2':'2','3':'3','КМС':'КМС','МС':'МС','МСМК':'МСМК'}
+CHOICES_category = (
+    ("53", "53"),
+    ("59", "59"),
+    ("66", "66"),
+    ("74", "74"),
+    ("83", "83"),
+    ("93", "93"),
+    ("105", "105"),
+    ("120", "120"),
+    ("120+", "120+"),
+    ("43", "43-жен"),
+    ("47", "47-жен"),
+    ("52", "52-жен"),
+    ("57", "57-жен"),
+    ("63", "63-жен"),
+    ("69", "69-жен"),
+    ("72", "72-жен"),
+    ("76", "76-жен"),
+    ("84", "84-жен"),
+    ("84+", "84+-жен"),
+)
+CHOICES = (
+        ('Президент', 'Президент'),
+        ('Секретарь', 'Секретарь'),
+        ('Администратор', 'Администратор'),
+        ('Антидопинговая работа', 'Антидопинговая работа'),
+         ('free', 'free'),
+          )   
+CHOICES_for_mes = {
+        'prezident':'Президенту',
+        'sekretar':'Секретарю',
+        'administrator':'Администратору',
+        'antidopingovaya-rabota': 'Ответственному за антидопинговую работу',
+         'free':'free'
+               }
+CHOICES_Fed = (
+        ('true', 'член федерации'),
+        ('false', 'не состоит'),
+    )
+CHOICES_GENDER = (
+    ("мужской", "мужской"),
+    ("женский", "женский"),
+)
+CHOICES_DISCPLINA = (
+    ("ТЭ", "ТЭ"),
+    ("ТК", "ТК"),
+    ("ЖЭ", "ЖЭ"),
+    ("ЖК", "ЖК"),
+    ("Все дисциплины", "Все дисциплины"),
+)
 INTERNAL_IPS = [
     # ...
     "127.0.0.1",
@@ -154,7 +218,12 @@ INTERNAL_IPS = [
 AUTH_USER_MODEL='users.User'
 LOGIN_URL='/user/login/'
 
-
+CACHES={
+    'default':  {
+        'BACKEND':'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION':os.path.join(BASE_DIR,'fprz_cache'),
+    }
+}
 
 
 #Setting Email

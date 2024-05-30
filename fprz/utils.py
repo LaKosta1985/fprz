@@ -1,4 +1,4 @@
-from main.models import New
+from main.models import *
 from django.db.models import Q
 from django.contrib.postgres.search import (
     SearchQuery,
@@ -36,11 +36,3 @@ def q_search(query):
     )
     return result
 
-"""
-    keywords=[word for word in query.split() if len(word)>2]
-    q_objects=Q()
-    for token in keywords:
-        q_objects |=Q(title__icontains=token)
-        q_objects |=Q(content__icontains=token)
-    return New.objects.filter(q_objects)
-"""

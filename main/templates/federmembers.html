@@ -4,29 +4,36 @@
 {% endblock %}
 {% block content %}
   {% load static %}
-  <div class="container">
-    <div class="row">
-          {% if users %}
-            {% for a in users %}
-            {% if a.first_name %}
-            <div class="col">
-              <div class="card" style="width: 10rem">
-                {% if a.image %}
-                  <img src="{{ a.image.url }}"  alt="..." />
-                {% else %}
-                  <img src="{% static "load/users/no-photo.jpg" %}"  alt="..." />
-                {% endif %}
-                <div class="card-body">
-                  <h5 class="card-title">{{ a.first_name }}</h5>
-                  <h5 class="card-title">{{ a.last_name }}</h5>
-                
-                </div>
+              {% if not users %}
+                  {% for a in users %}
+                    {% if a.status_in_Feder %}
+            <section class="carousel">
+              <div class="reel">
+                      <article id="cardLenta">
+                        <a href="#" class="image featured"><img id="caruselCss" src="{% if a.image %} {{ a.image.url }} {% else %} {% static "load/users/no-photo.jpg" %} {% endif %}" alt=""/></a>
+                          <header>
+                          <h3><a href="#">{{a.first_name}} {{a.last_name}}</a></h3>
+                          </header>
+                          {% if a.kat %}
+                            <details> 
+                            <summary><h6>ПОДРОБНЕЕ</h6></summary>
+                            {% if a.kat %}-Категория-{{a.kat}} {% endif %}
+                            {% if a.raz %}<p>-Разряд- {{a.raz}}</p>{% endif %}
+                            {% if a.date %}<p>-Год рождения- {{a.date}}</p>{% endif %} 
+                            {% if a.bench %}<p>-Присед- {{a.bench}}</p>{% endif %}
+                            {% if a.press %}<p>-Жим- {{a.press}}</p>{% endif %}
+                            {% if a.d_lift %}<p>-Тяга- {{a.d_lift}}</p>{% endif %}
+                            {% if a.sum %}<p>-Сумма- {{a.sum}}</p>{% endif %}
+                            {% if a.from_self %}<p> {{a.from_self}}</p>{% endif %}
+                            </details>
+                          {% endif %}
+                      </article>
               </div>
-            </div>
-            {% endif %}
-            {% endfor %}
-          {% endif %}
-    
-    </div>
-</div>
+            </section>
+
+                {% endif %}
+              {% endfor %}  
+           {% else %}
+        <h1>Здесь пока пусто.</h1>
+      {% endif %}
 {% endblock %}

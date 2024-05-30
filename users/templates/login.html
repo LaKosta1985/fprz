@@ -38,27 +38,24 @@
                 </form>
 
                 <div class="mt-3">
-                    <a href="#">Забыли пароль?</a> | <a href="{% url "users:registration" %}">Создать аккаунт</a>
+                    <a href="{% url "users:sendMesToEmail" %}">Забыли пароль?</a> | <a href="{% url "users:registration" %}">Создать аккаунт</a>
                 </div>
                 <hr>
-                <div class="text-center">
-                    <p>Или авторизуйтесь через:</p>
-                    <a href="#" class="btn btn-dark">
-                        <img class="mx-1" src="{% static "icons/google.svg" %}" alt="Catalog Icon" width="16" height="16">
-                        Google
-                    </a>
-                    <a href="#" class="btn btn-dark">
-                        <img class="mx-1" src="{% static "icons/facebook.svg" %}" alt="Catalog Icon" width="16" height="16">
-                        Facebook
-                    </a>
-                    <a href="#" class="btn btn-dark">
-                        <img class="mx-1" src="{% static "icons/facebook.svg" %}" alt="Catalog Icon" width="16" height="16">
-                        GitHub
-                    </a>
-                </div>
+        
             </div>
         </div>
     </div>
 </div>
 
+{% if data %}
+    <script type="text/javascript" charset="utf-8">
+    alert("На {{data}} отправлен пароль!");  
+    </script>
+{% endif %}
+
 {% endblock content %}
+
+
+
+  
+

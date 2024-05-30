@@ -38,6 +38,7 @@ urlpatterns = [
     path('user/', include(('users.urls','users'), namespace='users')),
     path("like/", like,name='like'),
     path("like_/", like_,name='like_'),
+    path("count_view/", count_view,name='count_view'),
     path("contacts",contacts,name='contacts'),
     path("sorev/", include(sorev_patterns)),
     path("sportsmens/", include(sportsmens_patterns)),

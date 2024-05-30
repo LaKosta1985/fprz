@@ -176,3 +176,10 @@ def foto(request,slug_foto):
     else:
         return render(request, "albom_foto.html")
 
+def count_view(request):
+
+    nameCount = request.GET.get("nameCount")
+    if nameCount:
+        id_nameCount = New.objects.get(id=nameCount)
+        id_nameCount.count_view = id_nameCount.count_view + 1
+        id_nameCount.save()

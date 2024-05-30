@@ -412,7 +412,6 @@
 			
 
 
-
 			<script type="text/javascript">
 				//скрипт для по-дс-че-та про-см-от-ров
 				var timer;
@@ -425,86 +424,85 @@
 				var nameCount = null;
 				var par1;
 				function scrollTracking() {
-			
-					var wt = $(window).scrollTop();
-					var wh = $(window).height();
-					var d = $(".view_count").toArray().map(el => el.id);
-			
-					
-			
-					for (let i = 0; i < d.length; i++) {
-						nameCount = null;
-						count = null;
-			
-						var et = $("#" + d[i]).offset().top;
-						var eh = $("#" + d[i]).outerHeight();
-			
-						if (et >= wt && et + eh <= wh + wt) {
-							
-							par1 = d[i];
-							
-			
-							if (block_show == true) {
-								setTimeout(function () { countTimer(par1) }, 1000);
-			
-								block_show = false;
-								counter1 = i;
-							}
-			
-			
-						}
-						else if (counter1 == i) {
-							
-			
-							block_show = true;
-						}
-			
-			
-			
-			
+			  
+				  var wt = $(window).scrollTop();
+				  var wh = $(window).height();
+				  var d = $(".view_count").toArray().map(el => el.id);
+			  
+				  
+			  
+				  for (let i = 0; i < d.length; i++) {
+					nameCount = null;
+					count = null;
+			  
+					var et = $("#" + d[i]).offset().top;
+					var eh = $("#" + d[i]).outerHeight();
+			  
+					if (et >= wt && et + eh <= wh + wt) {
+					  
+					  par1 = d[i];
+					  
+			  
+					  if (block_show == true) {
+						setTimeout(function () { countTimer(par1) }, 1000);
+			  
+						block_show = false;
+						counter1 = i;
+					  }
+			  
+			  
 					}
-			
-			
-			
+					else if (counter1 == i) {
+					  
+			  
+					  block_show = true;
+					}
+			  
+			  
+			  
+			  
+				  }
+			  
+			  
+			  
 				}
-			
-			
-			
-			
+			  
+			  
+			  
+			  
 				function countTimer(par1) {
-					
-					
-					var data = {
-			
-						nameCount: par1
-					};
-			
-					$.ajax({
-						type: 'GET',
-						url: '/',
-						contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-						data: data,
-						success: function (result) {
-							
-						},
-						error: function () {
-			
-							console.log('Failed ');
-						}
-					})
-			
+				  
+				  
+				  var data = {
+			  
+					nameCount: par1
+				  };
+			  
+				  $.ajax({
+					type: 'GET',
+					url: 'count_view',
+					contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+					data: data,
+					success: function (result) {
+					  
+					},
+					error: function () {
+			  
+					}
+				  })
+			  
 				}
-			
-			
+			  
+			  
 				window.onscroll = () => {
-			
-					clearTimeout(timer);
-					/* wait until 400 ms for callback */
-					timer = setTimeout(scrollTracking, 400);
+			  
+				  clearTimeout(timer);
+				  /* wait until 400 ms for callback */
+				  timer = setTimeout(scrollTracking, 400);
 				}
-			
-			</script>
-			
+			  
+			  </script>
+			  
 			
 			
 

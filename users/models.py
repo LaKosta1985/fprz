@@ -8,7 +8,7 @@ from fprz.settings import CHOICES_category,CHOICES,CHOICES_Fed,CHOICES_RAZRAD
 def user_directory_path(instance, filename):
     return 'users/{0}'.format(filename)
 class User(AbstractUser):
-    slug=models.SlugField(max_length=255,verbose_name="URL-не обязательно к заполнению, дублируется на латинице",unique=True,db_index=True,default='free')
+    #slug=models.SlugField(max_length=255,verbose_name="URL-не обязательно к заполнению, дублируется на латинице",unique=True,db_index=True)
     image=models.ImageField(upload_to=user_directory_path,blank=True,null=True,verbose_name="Аватар")
     tel=models.CharField(max_length=20,verbose_name="Телефон",blank=True,null=True)
     status=models.CharField(choices=CHOICES,verbose_name="Статус",blank=True,null=True,default='free')

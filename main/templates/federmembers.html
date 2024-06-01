@@ -4,11 +4,12 @@
 {% endblock %}
 {% block content %}
   {% load static %}
-              {% if not users %}
-                  {% for a in users %}
-                    {% if a.status_in_Feder %}
+              
+                 
             <section class="carousel">
               <div class="reel">
+                {% for a in users %}
+                   {% if users and a.status_in_Feder %}
                       <article id="cardLenta">
                         <a href="#" class="image featured"><img id="caruselCss" src="{% if a.image %} {{ a.image.url }} {% else %} {% static "load/users/no-photo.jpg" %} {% endif %}" alt=""/></a>
                           <header>
@@ -24,16 +25,18 @@
                             {% if a.press %}<p>-Жим- {{a.press}}</p>{% endif %}
                             {% if a.d_lift %}<p>-Тяга- {{a.d_lift}}</p>{% endif %}
                             {% if a.sum %}<p>-Сумма- {{a.sum}}</p>{% endif %}
-                            {% if a.from_self %}<p> {{a.from_self}}</p>{% endif %}
+                            {% if a.from_self %}<p>О Себе: {{a.from_self}}</p>{% endif %}
                             </details>
                           {% endif %}
                       </article>
+                      {% else %}
+                      <h1>Здесь пока пусто.</h1>
+                    {% endif %}
+                      {% endfor %}  
               </div>
             </section>
 
-                {% endif %}
-              {% endfor %}  
-           {% else %}
-        <h1>Здесь пока пусто.</h1>
-      {% endif %}
+                
+             
+        
 {% endblock %}
